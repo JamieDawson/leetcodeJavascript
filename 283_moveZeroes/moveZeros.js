@@ -1,5 +1,3 @@
-
-
 var moveZeroes = function(nums) {
     var count = 0;
 
