@@ -12,7 +12,9 @@ var majorityElement = function(nums) {
         } else {
             occurances[curNumber] = 1;
         }
+        console.log(occurances[curNumber])
         if (occurances[curNumber] > occurances[maxNumber]){
+            console.log("wut")
             maxNumber = curNumber;
         }
     }
@@ -20,6 +22,6 @@ var majorityElement = function(nums) {
     return maxNumber;
 };
 
-majorityElement([2,3,2])
+majorityElement([3,2,2,2,2])
 
 //
