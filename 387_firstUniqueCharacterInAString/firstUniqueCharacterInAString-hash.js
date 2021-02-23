@@ -1,18 +1,27 @@
-var firstUniqChar = function (s) {
-	const hashTable = {};
+const firstUniqueChar = (s) => {
+	//cretae a hash table.
 
+	//scan hash table to apply keys and values
+	// if value exist, increase key by 1
+	//else, create value. set it to one.
+
+	//scan hash table you created.
+	//if value in key is greater than 1
+	//return it
+
+	let hash = {};
 	for (let char of s) {
-		if (hashTable[char]) hashTable[char]++;
-		else hashTable[char] = 1;
+		if (hash[char]) hash[char]++;
+		else hash[char] = 1;
 	}
 
-	for (let i = 0; i < s.length; i++) {
-		const char = s[i];
-		if (hashTable[char] == 1) return i;
+	for (var i = 0; i < s.length; i++) {
+		let hold = s[i];
+		if (hash[hold] == 1) {
+			return i;
+		}
 	}
-
-	return -1;
 };
 
-let s = 'aaron';
-firstUniqChar(s);
+let s = 'loveleetcode';
+firstUniqueChar(s);

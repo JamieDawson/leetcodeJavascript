@@ -1,19 +1,19 @@
 let bubbleSort = (arr) => {
 	let len = arr.length - 1;
-	let swap = false;
+	let swapp = false;
 
 	do {
-		swap = false;
+		swapp = false;
 		for (var i = 0; i < len; i++) {
 			if (arr[i] > arr[i + 1]) {
 				let temp = arr[i];
 				arr[i] = arr[i + 1];
 				arr[i + 1] = temp;
-				swap = true;
+				swapp = true;
 			}
 		}
 		len--;
-	} while (swap);
+	} while (swapp);
 	console.log(arr);
 	return arr;
 };
