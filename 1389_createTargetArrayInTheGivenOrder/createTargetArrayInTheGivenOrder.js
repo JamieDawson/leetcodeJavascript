@@ -1,19 +1,8 @@
 var createTargetArray = function (nums, index) {
-	var kv = {};
 	var sorted = [];
 
 	for (var i = 0; i < index.length; i++) {
-		const grab = index[i];
-
-		if (kv[grab]) kv[grab].push(nums[i]);
-		else kv[grab] = [nums[i]];
-	}
-
-	for (var i in kv) {
-		kv[i].reverse();
-		for (var j = 0; j < kv[i].length; j++) {
-			sorted.push(kv[i][j]);
-		}
+		sorted.splice(index[i], 0, nums[i]);
 	}
 	return sorted;
 };
@@ -22,3 +11,17 @@ let nums = [0, 1, 2, 3, 4];
 let index = [0, 1, 2, 2, 1];
 
 createTargetArray(nums, index);
+
+/*
+   create empty array
+   
+   loop through index array
+        use slice functionality to add values.
+
+    return array.
+*/
+
+/*
+    Using the slice functionality helped in this situation.
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+*/
