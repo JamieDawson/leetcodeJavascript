@@ -17,15 +17,11 @@ var reverseList = function (head) {
 
 //tail recursion
 var reverseListR = function (on, prev = null) {
+	console.log(prev);
 	if (on === null) return prev;
 
 	let temp = on.next;
 	on.next = prev;
-
-	console.log(JSON.stringify(temp));
-	console.log(JSON.stringify(on));
-	console.log(`\n`);
-
 	return reverseListR(temp, on);
 };
 
