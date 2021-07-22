@@ -4,17 +4,19 @@ function NodeList(val) {
 }
 
 var deleteDuplicates = function (head) {
-	let cur = head;
+	var deleteDuplicates = function (head) {
+		let cur = head;
 
-	while (cur != null && cur.next != null) {
-		if (cur.next.val == cur.val) {
-			cur.next = cur.next.next;
-		} else {
-			cur = cur.next;
+		while (cur != null && cur.next != null) {
+			if (cur.next.val == cur.val) {
+				cur.next = cur.next.next;
+			} else {
+				cur = cur.next;
+			}
 		}
-	}
-	console.log(head);
-	return head;
+		console.log(head);
+		return head;
+	};
 };
 
 let node1 = new NodeList(1);

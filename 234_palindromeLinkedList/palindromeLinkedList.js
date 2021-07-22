@@ -3,13 +3,39 @@ function NodeList(val) {
 	this.next = null;
 }
 
-/*
-    two pointers for begining and end
-    make end get to the end.
-    while
-*/
-var isPalindrome = function (head) {
-	//console.log(head);
+let reverse = function(head) {
+    let prevNode = null;
+    
+    while(head !== null) {
+        let nextNode = head.next;
+        head.next = prevNode;
+        prevNode = head;
+        head = nextNode;
+    }
+    return prevNode;
+}
+
+var isPalindrome = function(head) {
+    let fast = head;
+    let slow = head;
+    
+    while(fast !== null && fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    
+    fast = head;
+    slow = reverse(slow);
+    
+    while (slow !== null) {
+        if(slow.val !== fast.val) {
+            return false;
+        }
+        slow = slow.next;
+        fast = fast.next;
+    }
+    
+    return true;
 };
 
 let node1 = new NodeList(1);
