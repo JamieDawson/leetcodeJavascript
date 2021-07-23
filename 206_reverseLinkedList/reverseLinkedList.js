@@ -16,13 +16,26 @@ var reverseList = function (head) {
 };
 
 //tail recursion
-var reverseListR = function (on, prev = null) {
-	console.log(prev);
-	if (on === null) return prev;
+// var reverseListR = function (on, prev = null) {
+// 	console.log(prev);
+// 	if (on === null) return prev;
 
-	let temp = on.next;
-	on.next = prev;
-	return reverseListR(temp, on);
+// 	let temp = on.next;
+// 	on.next = prev;
+// 	return reverseListR(temp, on);
+// };
+
+var reverseListR = function (head) {
+	let prev = null;
+
+	while (head !== null) {
+		let NextNode = head.next;
+		head.next = prev;
+		prev = head;
+		head = NextNode;
+	}
+	console.log(prev);
+	return prev;
 };
 
 let node1 = new NodeList(1);
