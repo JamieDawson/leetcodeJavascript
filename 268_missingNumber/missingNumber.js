@@ -1,26 +1,27 @@
 var missingNumber = function (nums) {
-	nums.sort();
-
-	var t = 0;
-	var s = 1;
-
-	//console.log(t);
-	//console.log(s);
-
+	//create hash
+	let hash = {};
+	//apply keys and values
 	for (var i = 0; i < nums.length; i++) {
-		console.log('wut');
-		if (s <= nums.length) console.log('LOST');
-
-		if (nums[t] + 1 == nums[s]) {
-			t++;
-			s++;
+		if (hash[nums[i]]) {
+			hash[nums[i]]++;
 		} else {
-			return nums[t] + 1;
+			hash[nums[i]] = 1;
 		}
 	}
+	//	console.log(Object.keys(hash).length);
 
-	//console.log(nums);
+	let hold = 0;
+	for (var i = 0; i < nums.length; i++) {
+		if (!hash.hasOwnProperty(i)) {
+			//console.log(i);
+			return i;
+		}
+		hold = i + 1;
+	}
+	//console.log(hold);
+	return hold;
 };
 
-let arr = [3, 0, 1];
+let arr = [];
 missingNumber(arr);
