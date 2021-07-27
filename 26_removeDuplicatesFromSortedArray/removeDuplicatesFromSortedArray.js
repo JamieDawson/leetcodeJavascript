@@ -1,20 +1,18 @@
 var removeDuplicates = function (nums) {
-	var hashTable = {};
+	let small = nums[0];
+	let big = nums[nums.length - 1];
 
 	for (var i = 0; i < nums.length; i++) {
-		var char = nums[i];
-		hashTable[char] = hashTable[char] + 1 || 1;
+		if (small <= big) {
+			nums[i] = small;
+			small++;
+		} else {
+			nums[i] = '_';
+		}
 	}
-
-	var sizeOfNums = nums.length;
-	nums = [];
-
-	for (var i = 0; i < sizeOfNums; i++) {
-		nums.push(hashTable[0][i]);
-	}
-
-	console.log(nums);
+	console.log(nums[big]);
+	return nums[big];
 };
 
-var nums = [1, 2, 2, 3, 3, 5, 6, 7];
+var nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
 removeDuplicates(nums);
