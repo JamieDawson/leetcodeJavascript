@@ -1,6 +1,6 @@
 var restoreString = function (s, indices) {
 	let hash = {};
-	let empty = [];
+	s = s.split('');
 	let i = 0;
 	while (i < indices.length) {
 		hash[indices[i]] = s[i];
@@ -9,10 +9,10 @@ var restoreString = function (s, indices) {
 
 	i = 0;
 	while (i < indices.length) {
-		empty.push(Object.values(hash[i]));
+		s[i] = Object.values(hash[i]);
 		i++;
 	}
-	return empty.join('');
+	return s.join('');
 };
 
 let s = 'codeleet';
