@@ -8,10 +8,12 @@ var restoreString = function (s, indices) {
 	}
 
 	i = 0;
+	console.log(hash);
 	while (i < indices.length) {
 		s[i] = Object.values(hash[i]);
 		i++;
 	}
+
 	return s.join('');
 };
 
