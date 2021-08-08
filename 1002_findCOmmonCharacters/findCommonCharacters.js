@@ -1,24 +1,25 @@
-// var commonChars = function(A) {
+var commonChars = function (A) {
+	let hashOne = {};
 
-// };
+	for (var i = 0; i < A[0].length; i++) {
+		if (hashOne[A[0][i]]) hashOne[A[0][i]]++;
+		else hashOne[A[0][i]] = 1;
+	}
+	//	console.log(hashOne);
 
-var commonChars = (A) => {
-	console.log(A);
+	for (word of A) {
+		console.log(word);
+	}
 };
 
-var A = ['bella', 'label', 'roller'];
-commonChars(A);
+let words = ['bella', 'label', 'roller'];
+commonChars(words);
 
 /*
-Create main hash
-create updating hash for comparing
+Create hash for first word
 
-loop #1: create main hash with first word in array
-
-loop: create has with "updated" hash
-    loop: compare values
-        if key in main doesn't exist in update hash
-            remove it
-        
+Loop through rest of words in hash
+    if value in hashOne doesn't exist in Hashtwo.
+        Delete it.
 
 */
