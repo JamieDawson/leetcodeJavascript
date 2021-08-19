@@ -4,17 +4,31 @@ function TreeNode(val) {
 	this.left = null;
 }
 
+// var insertIntoBST = function(root, val) {
+//     if(!root) {
+//         return new TreeNode(val);
+//     }
+//     if(val > root.val){
+//         root.right = insertIntoBST(root.right, val);
+//     }
+//     else {
+//         root.left = insertIntoBST(root.left, val);
+//     }
+//     return root;
+// };
+
 var insertIntoBST = function(root, val) {
-    if(!root) {
-        return new TreeNode(val);
-    }
-    if(val > root.val){
-        root.right = insertIntoBST(root.right, val);
-    }
-    else {
-        root.left = insertIntoBST(root.left, val);
-    }
-    return root;
+	if(!root) {
+		return new TreeNode(val);
+	}
+
+	if(val > root.val) {
+		root.right = insertIntoBST(root.right, val);
+	}
+	if(val < root.val) {
+		root.left = insertIntoBST(root.left, val);
+	}
+	return root;
 };
 
 let node4 = new TreeNode(4);
