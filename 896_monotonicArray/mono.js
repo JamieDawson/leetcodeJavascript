@@ -12,14 +12,15 @@ var isMonotonic = function (nums) {
 		}
 		j++;
 	}
+	console.log(increasing);
+	console.log(decreasing);
 
 	return increasing || decreasing;
 };
 
 let nums = [1, 2, 4, 5];
 
-let done = isMonotonic(nums);
-console.log(done);
+isMonotonic(nums);
 
 /*
 //var increasing = true
