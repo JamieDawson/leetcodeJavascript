@@ -1,5 +1,14 @@
 var finalValueAfterOperations = function(operations) {
- 
+    let counter = 0;
+
+    for(var i = 0; i < operations.length; i++) {
+        if(operations[i][0] == '+' && operations[i][2] == 'X' || operations[i][0] == 'X' && operations[i][2] == '+')
+            counter++
+        if(operations[i][0] == '-' && operations[i][2] == 'X' || operations[i][0] == 'X' && operations[i][2] == '-')
+            counter--
+    }
+   
+    return counter
 };
 
 let operations = ["--X","X++","X++"];
