@@ -1,13 +1,20 @@
 var divideArray = function(nums) {
     let hash = {};
 
-    // for(var i = 0; i < nums.length; i++) {
-    //     if (!hash[i]) {
-    //         hash[i] = 1;
-    //     } else
-    //     hash[i] = hash[i]++;
-    // }
-    // console.log(hash)
+   for(let n of nums) {
+       if (hash[n]) hash[n]++
+       else
+        hash[n] = hash[n] = 1
+   }
+
+   var i = 0;
+   while(i < Object.values(hash).length) {
+        let v = Object.values(hash)[i];
+        if (v % 2 !== 0)
+            return false;
+        i++;
+   }
+   return true;
 
 };
 
