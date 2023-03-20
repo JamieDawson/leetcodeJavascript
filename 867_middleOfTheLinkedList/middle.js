@@ -1,28 +1,31 @@
+//TIME: O(n) - going through the entire linked list once. Then a different loop goes to the middle. The first loop being the worst case senerio
+//SPACE: O(1) - Just creating pointers and basic counter variables.
+
 function NodeList(val) {
   this.val = val;
   this.next = null;
 }
 
 function isEven(value) {
-  let nodeToFindLength = value;
+  let nodeToFindLength = head;
   let counter = 0;
   let actualMiddleLenght;
-  let headNode = value;
 
   while (nodeToFindLength !== null) {
     nodeToFindLength = nodeToFindLength.next;
     counter++;
   }
 
-  actualMiddleLenght = Math.round(counter / 2) - (counter % 2);
+  nodeToFindLength = head;
+  actualMiddleLenght = Math.floor(counter / 2);
   counter = 0;
 
   while (counter < actualMiddleLenght) {
-    headNode = headNode.next;
+    nodeToFindLength = nodeToFindLength.next;
     counter++;
   }
 
-  return headNode;
+  return nodeToFindLength;
 }
 
 // var middleNode = function (head) {
