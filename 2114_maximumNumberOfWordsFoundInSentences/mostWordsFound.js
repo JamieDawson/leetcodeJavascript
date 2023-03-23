@@ -21,6 +21,8 @@ const sentences = ["please wait", "continue to fight", "continue to win"];
 //const sentences = [];
 mostWordsFound(sentences);
 
+//https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/submissions/
+
 /*
 Create counter variable, set to zero.
 Create largest variable and set it to zero.

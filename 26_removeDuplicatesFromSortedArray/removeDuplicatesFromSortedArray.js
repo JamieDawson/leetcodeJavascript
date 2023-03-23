@@ -1,3 +1,38 @@
+var removeDuplicates = function (nums) {};
+
+var nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
+
+removeDuplicates(nums);
+
+/*
+Inputs you can get
+[0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
+[1,1,2];
+[0,0,0,0,3];
+
+*/
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/*
 var removeDuplicates = function (nums) {
 	let first = nums[0];
 	let last = nums[nums.length - 1];
@@ -22,15 +57,4 @@ var removeDuplicates = function (nums) {
 
 	return k;
 };
-
-var nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
-
-removeDuplicates(nums);
-
-/*
-Inputs you can get
-[0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
-[1,1,2];
-[0,0,0,0,3];
-
 */

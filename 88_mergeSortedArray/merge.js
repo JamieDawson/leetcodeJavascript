@@ -4,7 +4,7 @@ var merge = function (nums1, m, nums2, n) {
 
   //add positive numbers from nums1 to hash
   for (let char of nums1) {
-    if (char > 0) {
+    if (char !== 0) {
       if (hash[char]) hash[char]++;
       else hash[char] = 1;
       fill++;
@@ -13,7 +13,7 @@ var merge = function (nums1, m, nums2, n) {
 
   //add positive numbers from nums2 to hash
   for (let char of nums2) {
-    if (char > 0) {
+    if (char !== 0) {
       if (hash[char]) hash[char]++;
       else hash[char] = 1;
       fill++;
@@ -23,7 +23,7 @@ var merge = function (nums1, m, nums2, n) {
 
   if (fill < m + n) {
     hash[0] = m + n - fill;
-    console.log("test");
+
     fill++;
   }
 
@@ -39,7 +39,7 @@ var merge = function (nums1, m, nums2, n) {
       i++;
     }
   }
-  console.log(nums1);
+  console.log(nums1.sort());
   return nums1;
 };
 

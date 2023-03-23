@@ -7,7 +7,6 @@ class ListNode {
 
 var getDecimalValue = function (head) {
   let finalResult = 0;
-  let startPoint = 0;
   let arr = [128, 64, 32, 16, 8, 4, 2, 1];
   let hold = head;
   let count = 0;
@@ -17,18 +16,15 @@ var getDecimalValue = function (head) {
     hold = hold.next;
   }
 
-  startPoint = 8 - count;
-
-  // count = 8 - count;
-  // console.log(count);
-
+  count = 8 - count;
   hold = head;
+
   while (hold) {
     if (hold.value == 1) {
-      finalResult += arr[startPoint];
+      finalResult += arr[count];
     }
     hold = hold.next;
-    startPoint++;
+    count++;
   }
 
   console.log(finalResult);
