@@ -1,22 +1,20 @@
 function NodeList(val) {
-	this.val = val;
-	this.next = null;
+  this.val = val;
+  this.next = null;
 }
 
 var deleteDuplicates = function (head) {
-	var deleteDuplicates = function (head) {
-		let cur = head;
+  let cur = head;
 
-		while (cur != null && cur.next != null) {
-			if (cur.next.val == cur.val) {
-				cur.next = cur.next.next;
-			} else {
-				cur = cur.next;
-			}
-		}
-		console.log(head);
-		return head;
-	};
+  while (cur != null && cur.next != null) {
+    if (cur.next.val == cur.val) {
+      cur.next = cur.next.next;
+    } else {
+      cur = cur.next;
+    }
+  }
+  console.log(head);
+  return head;
 };
 
 let node1 = new NodeList(1);
@@ -29,4 +27,4 @@ node2.next = node3;
 node3.next = node4;
 node4.next = node5;
 
-deleteDuplicates(node1);
+console.log(deleteDuplicates(node1));
