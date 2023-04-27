@@ -1,30 +1,30 @@
 var isValid = function (s) {
-	const stack = [];
-	const pairs = {
-		'(': ')',
-		'[': ']',
-		'{': '}',
-	};
+  const stack = [];
+  const pairs = {
+    "(": ")",
+    "[": "]",
+    "{": "}",
+  };
 
-	for (let char of s) {
-		if (char in pairs) {
-			console.log(char);
-			stack.push(char);
-		} else {
-			if (stack.length === 0) return false;
-			const last = stack.pop();
-			console.log(last);
-			if (pairs[last] !== char) return false;
-		}
-	}
-	if (stack.length) {
-		return false;
-	} else {
-		return true;
-	}
+  for (let char of s) {
+    if (char in pairs) {
+      console.log("char is: " + char);
+      stack.push(char);
+    } else {
+      if (stack.length === 0) return false;
+      const last = stack.pop();
+      console.log(last);
+      if (pairs[last] !== char) return false;
+    }
+  }
+  if (stack.length) {
+    return false;
+  } else {
+    return true;
+  }
 };
 
-let s = '([{}])';
+let s = "([{}])";
 
 isValid(s);
 
@@ -41,4 +41,15 @@ else {
 				return false;
 			}
         }
+*/
+
+/*
+Create a state
+create a hashtabl eiht all symbols
+
+loop thorugh s
+	
+
+
+
 */
