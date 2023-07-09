@@ -1,4 +1,26 @@
-var mergeTwoLists = function (l1, l2) {
+class ListNode {
+  constructor(val = null, next = null) {
+    this.val = val;
+    this.next = next;
+  }
+}
+
+var mergeTwoLists = function (l1, l2) {};
+
+/*
+let current1 = l1
+let current2 = l2
+
+while current1 isn't null AND current2 isn't null
+	if current1 va is smaller than current 2
+
+*/
+
+/*
+OLD CODE:
+*/
+
+/*
 	let dummy = new ListNode(-1);
 	let head = dummy;
 
@@ -20,11 +42,4 @@ var mergeTwoLists = function (l1, l2) {
 	}
 
 	return head.next;
-};
-
-class ListNode {
-	constructor(val = null, next = null) {
-		this.val = val;
-		this.next = next;
-	}
-}
+	*/

@@ -1,0 +1,39 @@
+/*
+My version of the answer
+n = number of groups
+m = max number for any group
+TIME: O(nm)  n times m
+space: O(nm) n times m
+*/
+const uncompress = (s) => {
+  let numberHolder = 0;
+  let letterHolder = "";
+  let saveNumber = "";
+  let finalString = "";
+
+  while (numberHolder < s.length) {
+    while (s[numberHolder] >= 0 || s[numberHolder <= 9]) {
+      saveNumber = saveNumber + s[numberHolder];
+      numberHolder++;
+    }
+
+    letterHolder = s[numberHolder];
+    finalString += createFinalString(saveNumber, letterHolder);
+    numberHolder++;
+    saveNumber = "";
+    letterHolder = "";
+  }
+
+  return finalString;
+};
+
+const createFinalString = (saveNumber, letterHolder) => {
+  let returnString = "";
+  while (saveNumber > 0) {
+    returnString += letterHolder;
+    saveNumber--;
+  }
+  return returnString;
+};
+
+uncompress("2c3a1t"); // -> 'ccaaat'

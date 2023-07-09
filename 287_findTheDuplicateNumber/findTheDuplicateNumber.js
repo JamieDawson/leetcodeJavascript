@@ -1,23 +1,23 @@
 var findDuplicate = function (nums) {
-	//create a hash
-	let hash = {};
+  let slow = nums[0];
+  let fast = nums[nums[0]];
 
-	//apply keys/values to hash
-	for (var i = 0; i < nums.length; i++) {
-		if (hash[nums[i]]) {
-			hash[nums[i]]++;
-		} else {
-			hash[nums[i]] = 1;
-		}
-	}
+  while (slow != fast) {
+    // we are guaranteed to have a cycle
+    console.log("first loop");
+    console.log(fast);
+    slow = nums[slow];
+    fast = nums[nums[fast]];
+  }
 
-	for (var i = 0; i < nums.length; i++) {
-		if (hash[nums[i]] > 1) {
-			console.log(nums[i]);
-			return nums[i];
-		}
-	}
-	return null;
+  slow = 0;
+
+  while (slow != fast) {
+    slow = nums[slow];
+    fast = nums[fast];
+  }
+
+  return slow;
 };
 
 let nums = [1, 3, 4, 3, 2];

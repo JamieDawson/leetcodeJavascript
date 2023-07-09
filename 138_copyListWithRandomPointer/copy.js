@@ -1,0 +1,5 @@
+
+
+var copyRandomList = function(head) {
+    
+};

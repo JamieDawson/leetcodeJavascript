@@ -1,20 +1,10 @@
 function NodeList(val) {
-	this.val = val;
-	this.next = null;
+  this.val = val;
+  this.next = null;
 }
 
 var removeElements = function (head, val) {
-	if (head == null) {
-		return null;
-	} else {
-		if (head.val == val) {
-			return removeElements(head.next, val);
-		} else {
-			head.next = removeElements(head.next, val);
-		}
-	}
-	//console.log(head);
-	return head;
+  console.log(head.next.next.val);
 };
 
 let node1 = new NodeList(1);
@@ -34,3 +24,19 @@ node6.next = node7;
 let number = 6;
 
 removeElements(node1, number);
+
+/*
+var removeElements = function (head, val) {
+	if (head == null) {
+		return null;
+	} else {
+		if (head.val == val) {
+			return removeElements(head.next, val);
+		} else {
+			head.next = removeElements(head.next, val);
+		}
+	}
+	//console.log(head);
+	return head;
+};
+*/

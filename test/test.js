@@ -1,14 +1,13 @@
-var test = function (test) {
-	let i = 3;
-	let j = 4;
-	let k = 1;
+class Library {
+	constructor()
+}
 
-	for (i = 0; i < 3; i++) {
-		k += j;
-		j = j - 1;
+class Book {
+	constructor(id, title, pages) {
+		this.id = id; //int
+		this.title = title; //str
+		this.pages = pages //array of strings
+		this.lastPage = 0;
 	}
-};
+}
 
-let done = test();
-
-console.log(done);

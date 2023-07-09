@@ -1,29 +1,24 @@
 function NodeTree(val) {
-	this.val = val;
-	this.left = null;
-	this.right = null;
+  this.val = val;
+  this.left = null;
+  this.right = null;
 }
 
 var levelOrder = function (root) {
-	if (!root) {
-		return [];
-	}
-	const queue = [root];
-	const levels = [];
-	while (queue.length) {
-		//console.log(queue.length);
-		let size = queue.length;
-		const currentLevel = [];
-		while (size > 0) {
-			size--;
-			const item = queue.shift();
-			currentLevel.push(item.val);
-			if (item.left) queue.push(item.left);
-			if (item.right) queue.push(item.right);
-		}
-		levels.push(currentLevel);
-	}
-	return levels;
+  if (!root) return [];
+
+  let stackBFS = [root];
+  let level = 0;
+  let results = [];
+
+  while (stackBFS.length > 0) {
+    let current = stackBFS.shift();
+
+    if (current.left) stackBFS.push(current.left);
+    if (current.right) stackBFS.push(current.right);
+  }
+
+  return results;
 };
 
 //var levelOrder = function (root) {

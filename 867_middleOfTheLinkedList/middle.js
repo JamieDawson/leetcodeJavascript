@@ -7,36 +7,22 @@ function NodeList(val) {
 }
 
 function isEven(value) {
-  let nodeToFindLength = head;
+  let current = head;
   let counter = 0;
-  let actualMiddleLenght;
 
-  while (nodeToFindLength !== null) {
-    nodeToFindLength = nodeToFindLength.next;
+  while (current !== null) {
+    current = current.next;
     counter++;
   }
 
-  nodeToFindLength = head;
-  actualMiddleLenght = Math.floor(counter / 2);
-  counter = 0;
+  current = head;
+  counter = Math.floor(counter / 2);
 
-  while (counter < actualMiddleLenght) {
-    nodeToFindLength = nodeToFindLength.next;
-    counter++;
+  for (var i = 0; i < counter; i++) {
+    current = current.next;
   }
-
-  return nodeToFindLength;
+  return current;
 }
-
-// var middleNode = function (head) {
-// 	slow = fast = head;
-// 	while (fast && fast.next) {
-// 		slow = slow.next;
-// 		fast = fast.next.next;
-// 	}
-// 	console.log(slow);
-// 	return slow;
-// };
 
 let node1 = new NodeList(1);
 let node2 = new NodeList(2);
@@ -52,3 +38,31 @@ node4.next = node5;
 node5.next = node6;
 
 console.log(isEven(node1));
+
+/*
+OLD CODE:
+*/
+
+/*
+var middleNode = function(head) {
+  let nodeToFindLength = head;
+  let counter = 0;
+  let actualMiddleLenght;
+
+  while (nodeToFindLength !== null) {
+    nodeToFindLength = nodeToFindLength.next;
+    counter++;
+  }
+  
+  nodeToFindLength = head;
+  actualMiddleLenght = Math.floor(counter / 2);
+  counter = 0;
+  
+  while (counter < actualMiddleLenght) {
+    nodeToFindLength = nodeToFindLength.next;
+    counter++;
+  }
+
+  return nodeToFindLength;
+};
+*/
