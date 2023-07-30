@@ -16,7 +16,7 @@ var numIslands = function (grid) {
     }
 
     grid[i][j] = "0";
-    console.log(grid);
+    // console.log(grid);
 
     callDFS(grid, i + 1, j); // down
     callDFS(grid, i - 1, j); // up

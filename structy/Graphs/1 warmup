@@ -1,8 +1,41 @@
+// const depthFirstPrint = (graph, source) => {
+//   const stack = [source];
+
+//   while (stack.length > 0) {
+//     const current = stack.pop();
+//     console.log(current);
+//     for (let neighbor of graph[current]) {
+//       stack.push(neighbor);
+//     }
+//   }
+// };
+
+// //recursive DFS
+// const depthFirstPrint = (graph, source) => {
+//   console.log(source);
+//   for (let neighbor of graph[source]) {
+//     depthFirstPrint(graph, neighbor);
+//   }
+// };
+
+// const breadthFirstPrint = (graph, source) => {
+//   let queue = [source];
+
+//   while (queue.length > 0) {
+//     const current = queue.shift();
+//     console.log(current);
+//     for (let neighbor of graph[current]) {
+//       queue.push(neighbor);
+//     }
+//   }
+// };
+
+//study again
 const depthFirstPrint = (graph, source) => {
   const stack = [source];
 
   while (stack.length > 0) {
-    const current = stack.pop();
+    let current = stack.pop();
     console.log(current);
     for (let neighbor of graph[current]) {
       stack.push(neighbor);
@@ -10,23 +43,10 @@ const depthFirstPrint = (graph, source) => {
   }
 };
 
-//recursive DFS
-const depthFirstPrint = (graph, source) => {
+const depthFirstPrintRecur = (graph, source) => {
   console.log(source);
   for (let neighbor of graph[source]) {
-    depthFirstPrint(graph, neighbor);
-  }
-};
-
-const breadthFirstPrint = (graph, source) => {
-  let queue = [source];
-
-  while (queue.length > 0) {
-    const current = queue.shift();
-    console.log(current);
-    for (let neighbor of graph[current]) {
-      queue.push(neighbor);
-    }
+    depthFirstPrintRecur(graph, neighbor);
   }
 };
 
@@ -39,6 +59,6 @@ const graph = {
   f: [],
 };
 
-//depthFirstPrint(graph, "a");
+depthFirstPrint(graph, "a");
 
-breadthFirstPrint(graph, "a");
+//breadthFirstPrint(graph, "a");
