@@ -10,6 +10,7 @@ const pairSum = (numbers, targetSum) => {
     }
 
     previousNums[num] = i;
+    console.log(previousNums);
   }
 };
 

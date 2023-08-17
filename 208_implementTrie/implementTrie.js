@@ -8,7 +8,6 @@ class Node {
 class Trie {
   constructor() {
     this.root = new Node();
-    console.log(this.root);
   }
 
   insert(word) {
