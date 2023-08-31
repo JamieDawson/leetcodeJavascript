@@ -1,11 +1,27 @@
 let runTest = (tasks) => {
-  tasks.map((item) => item.taskId);
+  let hash = new Object();
+
+  tasks.forEach((element) => {
+    if (!hash[element]) {
+      hash[element] = 1;
+    } else {
+      hash[element] += 1;
+    }
+  });
+
+  console.log(hash);
+
+  //get keys
+  for (var i in hash) {
+    console.log(i);
+  }
+
+  //get values
+  for (var i in hash) {
+    console.log(hash[i]);
+  }
 };
 
-let tasks = [
-  { taskId: id1, queuedAtTime: 0, executionDuration: 10 },
-  { taskId: id2, queuedAtTime: 3, executionDuration: 7 },
-  { taskId: id3, queuedAtTime: 6, executionDuration: 3 },
-];
+let tasks = ["aaa", "bbb", "bbb", "bbb", "ccc"];
 
 runTest(tasks);
