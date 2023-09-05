@@ -8,3 +8,21 @@ var countPairs = function (nums, target) {
   }
   return count;
 };
+
+var countPairs = function (nums, target) {
+  let count = 0;
+  let left = 0;
+  let right = nums.length - 1;
+
+  nums = nums.sort((a, b) => a - b);
+
+  while (left < right) {
+    if (nums[left] + nums[right] < target) {
+      count += right - left;
+      left++;
+    } else {
+      right--;
+    }
+  }
+  return count;
+};
