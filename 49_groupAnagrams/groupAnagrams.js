@@ -1,22 +1,24 @@
-const groupAnagram = (strs) => {
-	//create hash
-	//loop through strings in array
-	//split, sort, and join selected string
-	//if this anagram exist
-	//push the unsorted into the keys value
-	//else
-	//create key and push value
-	//return object values
+var groupAnagrams = function (strs) {
+  let res = {};
+  for (let str of strs) {
+    let count = new Array(26).fill(0);
+    for (let char of str) {
+      count[char.charCodeAt() - 97]++;
+    }
 
-	let ht = {};
-	for (let char of strs) {
-		let sorted = char.split('').sort().join('');
-		if (ht[sorted]) ht[sorted].push(char);
-		else ht[sorted] = [sorted];
-	}
-	console.log(Object.values(ht));
-	return Object.values(ht);
+    let key = count.join("#");
+    console.log(count);
+    res[key] ? res[key].push(str) : (res[key] = [str]);
+  }
+  return Object.values(res);
 };
+let strs = ["eat", "tea", "tan", "ate", "nat", "bat"];
+groupAnagrams(strs);
 
-let strs = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'];
-groupAnagram(strs);
+/*
+make array called count
+
+key: [1e, 1a, 1t]:
+value [eat, tea, ate]
+
+*/

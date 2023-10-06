@@ -1,12 +1,15 @@
 var maxProfit = function (prices) {
-  let buyMinPrice = prices[0];
+  let l = 0; //buy
+  let r = 1; //sell
   let max = 0;
 
-  for (var i = 1; i < prices.length; i++) {
-    let sellPrice = prices[i];
-    let profit = sellPrice - buyMinPrice;
-    max = Math.max(max, profit);
-    buyMinPrice = Math.min(buyMinPrice, prices[i]);
+  while (r < prices.length) {
+    if (prices[l] >= prices[r]) {
+      l = r;
+    }
+    let buyAndSell = prices[r] - prices[l];
+    max = Math.max(max, buyAndSell);
+    r++;
   }
   return max;
 };

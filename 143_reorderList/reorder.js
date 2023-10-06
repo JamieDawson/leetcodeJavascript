@@ -5,20 +5,11 @@ class Node {
   }
 }
 
-const reorder = (l1, l2) => {
-  let first = l1;
-  let second = l2;
-  let next = null;
+var reorderList = function (head) {
+  let mid = findMiddle(head);
+  let reversedFromMiddle = reverseList(mid);
 
-  while (second.next) {
-    next = first.next;
-    first.next = second;
-    first = next;
-
-    next = second.next;
-    second.next = first;
-    second = next;
-  }
+  reorder(head, reversedFromMiddle);
 };
 
 var findMiddle = (head) => {
@@ -29,27 +20,36 @@ var findMiddle = (head) => {
     slow = slow.next;
     fast = fast.next.next;
   }
+
   return slow;
 };
 
-var reverseNodes = (head) => {
-  let current = head;
+var reverseList = (head) => {
   let prev = null;
 
-  while (current) {
-    let nextNode = current.next;
-    current.next = prev;
-    prev = current;
-    current = nextNode;
+  while (head) {
+    let nextNode = head.next;
+    head.next = prev;
+    prev = head;
+    head = nextNode;
   }
   return prev;
 };
 
-var reorderList = function (head) {
-  let current = head;
-  let middle = findMiddle(current);
-  middle = reverseNodes(middle);
-  reorder(head, middle);
+var reorder = (l1, l2) => {
+  let next = null;
+  let first = l1;
+  let second = l2;
+
+  while (second.next) {
+    next = first.next;
+    first.next = second;
+    first = next;
+
+    next = second.next;
+    second.next = first;
+    second = next;
+  }
 };
 
 let one = new Node(1);
@@ -69,6 +69,4 @@ reorderList(one);
 1) Find the middle of the list
 2) reverse from the middle
 3) swap values
-
-
 */

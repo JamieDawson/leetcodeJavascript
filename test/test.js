@@ -1,27 +1,16 @@
-let runTest = (tasks) => {
-  let hash = new Object();
+function ListNode(val, next) {
+  this.val = val === undefined ? 0 : val;
+  this.next = next === undefined ? null : next;
+}
 
-  tasks.forEach((element) => {
-    if (!hash[element]) {
-      hash[element] = 1;
-    } else {
-      hash[element] += 1;
-    }
-  });
+var test = function (list) {
+  let list1 = list.shift();
+  let list2 = list1.shift();
 
-  console.log(hash);
-
-  //get keys
-  for (var i in hash) {
-    console.log(i);
-  }
-
-  //get values
-  for (var i in hash) {
-    console.log(hash[i]);
-  }
+  console.log(list1);
+  console.log(list2);
 };
 
-let tasks = ["aaa", "bbb", "bbb", "bbb", "ccc"];
+let lists = [[1, 4, 5]];
 
-runTest(tasks);
+test(lists);
