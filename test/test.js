@@ -1,4 +1,4 @@
-class TreeNode {
+class NodeTree {
   constructor(val) {
     this.val = val;
     this.left = null;
@@ -6,26 +6,41 @@ class TreeNode {
   }
 }
 
-var levelOrder = function (root) {
-  let arr = [[]];
-  let curr = root;
+let dfs = (root) => {
+  let stack = [root];
+  let children = [];
 
-  while (curr) {
-    arr.push([0][[curr.val]]);
-    curr = curr.right;
+  while (stack.length > 0) {
+    let current = stack.pop();
+
+    if (!current.left && !current.right) {
+      children.push(current.val);
+    }
+    if (current.right) stack.push(current.right);
+    if (current.left) stack.push(current.left);
   }
-  console.log(arr);
+
+  return children;
 };
 
-let three = new TreeNode(3);
-let nine = new TreeNode(9);
-let twenty = new TreeNode(20);
-let fifteen = new TreeNode(15);
-let seven = new TreeNode(7);
+let one = new NodeTree(1);
+let two = new NodeTree(2);
+let three = new NodeTree(3);
+let four = new NodeTree(4);
+let five = new NodeTree(5);
+let six = new NodeTree(6);
+let seven = new NodeTree(7);
 
-three.left = nine;
-three.right = twenty;
-twenty.left = fifteen;
-twenty.right = seven;
+one.left = two;
+one.right = three;
+two.left = four;
+two.right = five;
+three.left = six;
+three.right = seven;
 
-levelOrder(three);
+console.log(dfs(one));
+
+
+Hashmap 
+DFS
+Create a copy of hte node
