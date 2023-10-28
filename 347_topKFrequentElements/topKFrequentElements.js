@@ -28,34 +28,67 @@ SPACE: O(n + m) n is biggestValues arry which is based off nums (a worst case ex
 //   return biggestValues;
 // };
 
+// var topKFrequent = function (nums, k) {
+//   const mp = new Map();
+//   const arr = new Array(nums.length + 1).fill(0);
+//   const ans = [];
+
+//   nums.forEach((el) => {
+//     const val = mp.get(el) || 0;
+//     mp.set(el, val + 1);
+//   });
+
+//   for (let [key, value] of mp) {
+//     const prev = arr[value] || [];
+//     prev.push(key);
+//     arr[value] = prev;
+//   }
+
+//   arr.reverse();
+//   for (let el of arr) {
+//     if (k < 1) break;
+//     if (el) {
+//       for (let el2 of el) {
+//         ans.push(el2);
+//         k--;
+//       }
+//     }
+//   }
+
+//   return ans;
+// };
+
 var topKFrequent = function (nums, k) {
-  const mp = new Map();
-  const arr = new Array(nums.length + 1).fill(0);
-  const ans = [];
+  const seen = {};
+  const bucket = [];
+  let res = [];
 
-  nums.forEach((el) => {
-    const val = mp.get(el) || 0;
-    mp.set(el, val + 1);
-  });
-
-  for (let [key, value] of mp) {
-    const prev = arr[value] || [];
-    prev.push(key);
-    arr[value] = prev;
-  }
-
-  arr.reverse();
-  for (let el of arr) {
-    if (k < 1) break;
-    if (el) {
-      for (let el2 of el) {
-        ans.push(el2);
-        k--;
-      }
+  for (let num of nums) {
+    if (seen[num] === undefined) {
+      seen[num] = 1;
+    } else {
+      seen[num]++;
     }
   }
 
-  return ans;
+  for (let i = 0; i <= nums.length; i++) {
+    bucket.push([]);
+  }
+
+  for (let key in seen) {
+    let count = seen[key];
+    bucket[count].push(key);
+  }
+
+  for (let i = bucket.length - 1; i >= 0; i--) {
+    if (bucket[i].length === 0) {
+      continue;
+    } else {
+      res = [...res, ...bucket[i]];
+    }
+  }
+
+  return res.slice(0, k);
 };
 
 let nums = [1, 1, 1, 2, 2, 3];

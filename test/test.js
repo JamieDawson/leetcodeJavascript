@@ -1,46 +1,36 @@
-class NodeTree {
-  constructor(val) {
-    this.val = val;
-    this.left = null;
-    this.right = null;
+/*
+Unit conversions
+how many meeters are in a inch.
+
+example facts: 
+m = 3.28 ft
+ft = 12 in 
+hr = 60 min
+min = 60 sec
+
+example queries:
+2 m = ? in --> answer = 78.72
+13 in = ? m -->  answer 0.330 (roughly)
+13 in = ? hr --> "not convertible!"
+*/
+
+/*
+my ideas
+Seperate the conversions into their won mini functions to be returned
+
+*/
+
+let partFacts = (fact, convertingParam) => {};
+
+let convertHour = (hour, convertingParam) => {
+  let allowedConversion = ["min", "hour", "day"];
+  let check = allowedConversion.find((item) => convertingParam === item);
+
+  if (check === undefined) {
+    console.log("not");
+    return "not convertible!";
   }
-}
-
-let dfs = (root) => {
-  let stack = [root];
-  let children = [];
-
-  while (stack.length > 0) {
-    let current = stack.pop();
-
-    if (!current.left && !current.right) {
-      children.push(current.val);
-    }
-    if (current.right) stack.push(current.right);
-    if (current.left) stack.push(current.left);
-  }
-
-  return children;
+  console.log(check);
 };
 
-let one = new NodeTree(1);
-let two = new NodeTree(2);
-let three = new NodeTree(3);
-let four = new NodeTree(4);
-let five = new NodeTree(5);
-let six = new NodeTree(6);
-let seven = new NodeTree(7);
-
-one.left = two;
-one.right = three;
-two.left = four;
-two.right = five;
-three.left = six;
-three.right = seven;
-
-console.log(dfs(one));
-
-
-Hashmap 
-DFS
-Create a copy of hte node
+convertHour("10", "day");
