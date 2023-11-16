@@ -1,36 +1,18 @@
-/*
-Unit conversions
-how many meeters are in a inch.
+var twoSum = function (nums, target) {
+  const indices = new Map();
 
-example facts: 
-m = 3.28 ft
-ft = 12 in 
-hr = 60 min
-min = 60 sec
+  for (let index = 0; index < nums.length; index++) {
+    const complement = target - nums[index];
 
-example queries:
-2 m = ? in --> answer = 78.72
-13 in = ? m -->  answer 0.330 (roughly)
-13 in = ? hr --> "not convertible!"
-*/
+    if (indices.has(complement)) {
+      return [indices.get(complement), index];
+    }
 
-/*
-my ideas
-Seperate the conversions into their won mini functions to be returned
-
-*/
-
-let partFacts = (fact, convertingParam) => {};
-
-let convertHour = (hour, convertingParam) => {
-  let allowedConversion = ["min", "hour", "day"];
-  let check = allowedConversion.find((item) => convertingParam === item);
-
-  if (check === undefined) {
-    console.log("not");
-    return "not convertible!";
+    indices.set(nums[index], index);
   }
-  console.log(check);
 };
 
-convertHour("10", "day");
+let nums = [2, 7, 11, 15];
+let target = 9;
+
+twoSum(nums, target);

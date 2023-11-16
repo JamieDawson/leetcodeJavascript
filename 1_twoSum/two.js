@@ -1,13 +1,13 @@
 var twoSum = function (nums, target) {
-  let myHash = {};
+  let myMap = new Map();
 
   for (var i = 0; i < nums.length; i++) {
-    let checkValue = target - nums[i];
-
-    if (myHash[checkValue] !== undefined) {
-      return [myHash[checkValue], i];
+    let check = target - nums[i];
+    console.log(myMap);
+    if (myMap.has(check)) {
+      return [myMap.get(check), i];
     } else {
-      myHash[nums[i]] = i;
+      myMap.set(nums[i], i);
     }
   }
 };
