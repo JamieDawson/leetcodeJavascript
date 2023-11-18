@@ -1,18 +1,11 @@
-var twoSum = function (nums, target) {
-  const indices = new Map();
-
-  for (let index = 0; index < nums.length; index++) {
-    const complement = target - nums[index];
-
-    if (indices.has(complement)) {
-      return [indices.get(complement), index];
-    }
-
-    indices.set(nums[index], index);
-  }
-};
+var twoSum = function (nums, target) {};
 
 let nums = [2, 7, 11, 15];
 let target = 9;
 
 twoSum(nums, target);
+
+/*
+.has() checks KEY
+.get() finds KEY, but returns VALUE
+*/
