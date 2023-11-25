@@ -1,11 +1,10 @@
-var twoSum = function (nums, target) {};
+function findStep(n) {
+  if (n == 0) return 1;
+  else if (n < 0) return 0;
+  else return findStep(n - 3) + findStep(n - 2) + findStep(n - 1);
+}
 
-let nums = [2, 7, 11, 15];
-let target = 9;
+// Driver code
 
-twoSum(nums, target);
-
-/*
-.has() checks KEY
-.get() finds KEY, but returns VALUE
-*/
+let n = 5;
+console.log(findStep(n));
