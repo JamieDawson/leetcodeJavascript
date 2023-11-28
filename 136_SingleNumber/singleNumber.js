@@ -1,18 +1,9 @@
 var singleNumber = function (nums) {
-	var hash = {};
-
-	for (var i = 0; i < nums.length; i++) {
-		let value = nums[i];
-		hash[value] = hash[value] + 1 || 1;
-	}
-
-	for (var i = 0; i < nums.length; i++) {
-		let value = nums[i];
-		if (hash[value] === 1) {
-			return nums[i];
-		}
-	}
+  let xor = 0;
+  for (num of nums) {
+    xor ^= num;
+  }
+  return xor;
 };
-
-let nums = [1];
+let nums = [2, 2, 1];
 console.log(singleNumber(nums));
