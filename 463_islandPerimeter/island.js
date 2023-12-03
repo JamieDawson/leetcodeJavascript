@@ -1,20 +1,32 @@
-var islandPerimeter = function(grid) {
-    let counter = 0;
-    for(var i = 0; i < grid.length; i++) {
-        for(var j = 0; j < grid[i].length; j++) {
-            if(grid[i][j] == '1') {
-               
-            }
-        }
+var islandPerimeter = function (grid) {
+  let height = grid.length;
+  let width = grid[0].length;
+
+  let count = 0;
+
+  for (let row = 0; row < height; row++) {
+    for (let col = 0; col < width; col++) {
+      if (grid[row][col] == 1) {
+        count += 4;
+
+        if (row > 0 && grid[row - 1][col] == 1) count--; //checking up
+        if (row < height - 1 && grid[row + 1][col] == 1) count--; //checking down
+        if (grid[row][col - 1] == 1) count--; // checking left
+        if (grid[row][col + 1] == 1) count--; // checking right
+      }
     }
-    console.log(counter);
-    return counter;
-    
+  }
+  return count;
 };
 
-let grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]];
+let grid = [
+  [0, 1, 0, 0],
+  [1, 1, 1, 0],
+  [0, 1, 0, 0],
+  [1, 1, 0, 0],
+];
 
-islandPerimeter(grid)
+islandPerimeter(grid);
 
 /*
 counter = 0; // counts  the walls.
@@ -34,7 +46,3 @@ loop through all 4 layers
 return counter
 
 */
-
-
-
-
