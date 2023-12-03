@@ -1,21 +1,23 @@
 function TreeNode(val) {
-    this.val = val;
-    this.left = null;
-    this.right = null;
+  this.val = val;
+  this.left = null;
+  this.right = null;
 }
 
-var maxDepth = function(root) {
-    
+var maxDepth = function (root) {
+  if (!root) return 0;
+
+  let queue = [root];
+  let count = 0;
+
+  while (queue.length > 0) {
+    let len = queue.length;
+
+    for (var i = 0; i < len; i++) {
+      let current = queue.shift();
+      for (let child of current.children) queue.push(child);
+    }
+    count++;
+  }
+  return count;
 };
-
-let node1 = new TreeNode(1);
-let node2 = new TreeNode(2);
-let node3 = new TreeNode(3);
-let node4 = new TreeNode(4);
-let node5 = new TreeNode(5);
-let node6 = new TreeNode(6);
-
-node1.left = node3;
-node1.right = 
-
-
