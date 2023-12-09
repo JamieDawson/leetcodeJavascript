@@ -1,19 +1,38 @@
+// var floodFill = function (image, sr, sc, color) {
+//   if (image[sr][sc] == color) return image;
+//   fill(image, sr, sc, color, image[sr][sc]);
+//   return image;
+// };
+
+// var fill = function (image, sr, sc, color, cur) {
+//   if (sr < 0 || sr >= image.length || sc < 0 || sc >= image[0].length) return;
+
+//   if (cur != image[sr][sc]) return;
+
+//   image[sr][sc] = color;
+//   fill(image, sr - 1, sc, color, cur);
+//   fill(image, sr + 1, sc, color, cur);
+//   fill(image, sr, sc - 1, color, cur);
+//   fill(image, sr, sc + 1, color, cur);
+// };
+
 var floodFill = function (image, sr, sc, color) {
-  if (image[sr][sc] == color) return image;
-  fill(image, sr, sc, color, image[sr][sc]);
+  const newColor = image[sr][sc];
+  if (newColor === color) return image;
+  const queue = [[sr, sc]];
+
+  while (queue.length) {
+    const [row, col] = queue.shift();
+    if (image[row][col] === newColor) {
+      image[row][col] = newColor;
+      if (row - 1 >= 0) queue.push([row - 1, col]);
+      if (row + 1 < image.length) queue.push([row + 1, col]);
+      if (col + 1 < image[0].length) queue.push([row, col + 1]);
+      if (col - 1 >= 0) queue.push([row, col - 1]);
+    }
+  }
+
   return image;
-};
-
-var fill = function (image, sr, sc, color, cur) {
-  if (sr < 0 || sr >= image.length || sc < 0 || sc >= image[0].length) return;
-
-  if (cur != image[sr][sc]) return;
-
-  image[sr][sc] = color;
-  fill(image, sr - 1, sc, color, cur);
-  fill(image, sr + 1, sc, color, cur);
-  fill(image, sr, sc - 1, color, cur);
-  fill(image, sr, sc + 1, color, cur);
 };
 
 let image = [
@@ -53,3 +72,6 @@ var fill = function(image, sr, sc, color, cur) {
     fill(image, sr, sc+1, color, cur);
 };
 */
+
+
+
