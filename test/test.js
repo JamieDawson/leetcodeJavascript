@@ -1,43 +1,34 @@
-const solution = (pot) => {
-  //create a list of areas where a zero appears at the top.
-  let zeroArray = [];
-  let top = pot[0];
-
-  for (var i = 0; i < top.length; i++) {
-    if (top[i] === 0) {
-      zeroArray.push([0, i]);
-    }
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.right = null;
+    this.left = null;
   }
+}
 
-  if (zeroArray.length === 0) {
-    return false;
-  }
-  //Use that list to use DFS on it to find the bottom
+const depthFirstvalues = (root) => {
+  let stack = [root];
 
-  //Use 2 loops to go through row and colum with the zeros list made above
-  for (var i = 0; i < zeroArray.length; i++) {
-    const [row, col] = zeroArray[i];
-    if (exploreDFS(pot, row, col) === true) {
-      return true;
-    }
+  while (stack.length > 0) {
+    let current = stack.pop(); // top of stack
+    console.log(current.val);
+
+    if (current.right !== null) stack.push(current.right);
+    if (current.left !== null) stack.push(current.left);
   }
 };
 
-const exploreDFS = (pot, row, col) => {
-  if (row < 0 || col < 0 || row >= pot.length || col >= pot[0].length)
-    return false;
+const a = new Node(3);
+const b = new Node(11);
+const c = new Node(4);
+const d = new Node(4);
+const e = new Node(-2);
+const f = new Node(1);
 
-  //check if on last row to see if I see a zero. Return TRue
+a.left = b;
+a.right = c;
+b.left = d;
+b.right = e;
+c.right = f;
 
-  exploreDFS(pot, row - 1, col);
-  exploreDFS(pot, row + 1, col);
-  exploreDFS(pot, row, col - 1);
-  exploreDFS(pot, row, col + 1);
-
-  return true;
-};
-let pot = [
-  [1, 0],
-  [1, 1],
-];
-solution(pot);
+depthFirstvalues(a);
