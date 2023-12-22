@@ -1,9 +1,18 @@
-const grades = [4, -2, 1];
+var search = function (nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
 
-function getAvg(grades) {
-  const total = grades.reduce((acc, c) => acc + c, 0);
-  return total / grades.length;
-}
+  while (left <= right) {
+    let mid = Math.round(right - left);
+    console.log(mid);
+    if (nums[mid] === target) {
+      return mid;
+    } else if (nums[mid] > target) {
+      right = mid - 1;
+    } else {
+      left = mid + 1;
+    }
+  }
 
-const average = getAvg(grades);
-console.log(average);
+  return -1;
+};
