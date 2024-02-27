@@ -3,11 +3,11 @@ var groupAnagrams = function (strs) {
   for (let str of strs) {
     let count = new Array(26).fill(0);
     for (let char of str) {
-      console.log(char.charCodeAt() - 97);
       count[char.charCodeAt() - 97]++;
     }
 
-    let key = count.join("#");
+    let key = count.toString("");
+    console.log("key is: " + key);
     res[key] ? res[key].push(str) : (res[key] = [str]);
   }
   return Object.values(res);

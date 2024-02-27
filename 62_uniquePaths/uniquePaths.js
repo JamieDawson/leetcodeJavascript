@@ -10,7 +10,7 @@ var uniquePaths = function (m, n) {
   for (let j = 0; j < n; j++) {
     dp[m - 1][j] = 1;
   }
-  //console.log(dp);
+  // console.log(dp);
 
   // Fill in the DP array bottom-up
   for (let i = m - 2; i >= 0; i--) {
@@ -19,13 +19,13 @@ var uniquePaths = function (m, n) {
       dp[i][j] = dp[i + 1][j] + dp[i][j + 1];
     }
   }
-  console.log(dp);
+  // console.log(dp);
 
   // Return the result stored in the top-left corner
   return dp[0][0];
 };
 var row = 3;
-var col = 3;
+var col = 7;
 
 uniquePaths(row, col);
 
