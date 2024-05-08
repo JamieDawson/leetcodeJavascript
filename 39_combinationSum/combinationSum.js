@@ -5,25 +5,26 @@
  */
 
 var combinationSum = function (candidates, target) {
-  let index = 0;
-  let tempDataStruct = [];
+  let id = 0;
+  let tempArray = [];
   let result = [];
 
-  function backtracking(index, target, tempDataStruct) {
+  const backtracking = (id, target, tempArray) => {
     if (target === 0) {
-      result.push([...tempDataStruct]);
+      result.push([...tempArray]);
       return;
     }
 
     if (target < 0) return;
 
-    for (let i = index; i < candidates.length; i++) {
-      tempDataStruct.push(candidates[i]);
-      backtracking(i, target - candidates[i], tempDataStruct);
-      tempDataStruct.pop();
+    for (let i = id; i < candidates.length; i++) {
+      tempArray.push(candidates[i]);
+      backtracking(i, target - candidates[i], tempArray);
+      tempArray.pop();
     }
-  }
-  backtracking(index, target, tempDataStruct);
+  };
+
+  backtracking(id, target, tempArray);
   return result;
 };
 
