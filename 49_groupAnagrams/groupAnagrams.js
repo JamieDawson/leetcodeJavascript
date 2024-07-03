@@ -5,6 +5,7 @@ var groupAnagrams = function (strs) {
     for (let char of str) {
       count[char.charCodeAt() - 97]++;
     }
+    console.log(count);
 
     let key = count.toString("");
     console.log("key is: " + key);

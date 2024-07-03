@@ -1,103 +1,57 @@
-class Node {
-  constructor() {
-    this.children = new Map();
-    this.isEnd = false;
-  }
-}
-
 class Trie {
   constructor() {
-    this.root = new Node();
+    this.root = {};
   }
 
   insert(word) {
-    //start with the root node
-    let currentNode = this.root;
-    //take every character in the word
-    for (let letter of word) {
-      if (!currentNode.children.has(letter)) {
-        //if not add it to children
-        currentNode.children.set(letter, new Node());
-      }
-      //process to the next depth of the trie
-      currentNode = currentNode.children.get(letter);
+    let node = this.root;
+    for (let c of word) {
+      if (!node[c]) node[c] = {};
+      node = node[c];
     }
-    currentNode.isEnd = true;
+    node.isWord = true;
   }
+
   search(word) {
-    if (!word.length) return false;
-    //start with root node
-    let currentNode = this.root;
-    //for every character in the word
-    for (let letter of word) {
-      //check if it exist int he children and return false if not
-      if (!currentNode.children.has(letter)) return false;
-      //proceed to the next depth of the trie
-      currentNode = currentNode.children.get(letter);
+    let node = this.root;
+    for (let c of word) {
+      if (node[c]) {
+        node = node[c];
+      } else {
+        return false;
+      }
     }
-    //we checked every letter of a word, but it is in the end of the trie?
-    return currentNode.isEnd;
+    return node.isWord === true;
   }
+
   startsWith(prefix) {
-    if (!prefix.length) return false;
-    //start with root node
-    let currentNode = this.root;
-    //for every character in the word
-    for (let letter of prefix) {
-      //check if it exist int he children and return false if not
-      if (!currentNode.children.has(letter)) return false;
-      //proceed to next depth of the trie
-      currentNode = currentNode.children.get(letter);
+    let node = this.root;
+
+    for (let c of prefix) {
+      if (node[c]) {
+        node = node[c];
+      } else {
+        return false;
+      }
     }
     return true;
   }
 }
-//https://www.youtube.com/watch?v=9UZZ0i33h64
 
-let trie = new Trie();
-// trie.insert("apple");
-// trie.search("apple");   // return True
-// trie.search("app");     // return False
-// trie.startsWith("app"); // return True
-// trie.insert("app");
-// trie.search("app");     // return True
+const trie = new Trie();
 
-//functions:  insert,  search, startsWith
+// Insert words into the trie
+trie.insert("apple");
+trie.insert("app");
 
-//HOW IT STARTS
+// // Test the search method
+// console.log(trie.search("apple")); // true
+// console.log(trie.search("app"));   // true
+// console.log(trie.search("appl"));  // false
+// console.log(trie.search("banana")); // false
 
-// var Trie = function() {
-
-// };
-
-// /**
-//  * @param {string} word
-//  * @return {void}
-//  */
-// Trie.prototype.insert = function(word) {
-
-// };
-
-// /**
-//  * @param {string} word
-//  * @return {boolean}
-//  */
-// Trie.prototype.search = function(word) {
-
-// };
-
-// /**
-//  * @param {string} prefix
-//  * @return {boolean}
-//  */
-// Trie.prototype.startsWith = function(prefix) {
-
-// };
-// */
-// /**
-//  * Your Trie object will be instantiated and called as such:
-//  * var obj = new Trie()
-//  * obj.insert(word)
-//  * var param_2 = obj.search(word)
-//  * var param_3 = obj.startsWith(prefix)
-//  */
+// // Test the startsWith method
+// console.log(trie.startsWith("app"));  // true
+// console.log(trie.startsWith("ap"));   // true
+// console.log(trie.startsWith("apple")); // true
+// console.log(trie.startsWith("ban"));   // false

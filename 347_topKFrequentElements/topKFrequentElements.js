@@ -80,6 +80,8 @@ var topKFrequent = function (nums, k) {
     bucket[count].push(key);
   }
 
+  console.log(bucket);
+
   for (let i = bucket.length - 1; i >= 0; i--) {
     if (bucket[i].length === 0) {
       continue;
