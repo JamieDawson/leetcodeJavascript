@@ -121,4 +121,15 @@ const data = [
   },
 ];
 
-let allAppointments = [];
+const createStore = (data) => {
+  const allAppointments = [];
+
+  data.forEach((doctor) => {
+    const { name, appointments } = doctor;
+    for (app  appointments) {
+      console.log(app);
+    }
+  });
+};
+
+createStore(data);

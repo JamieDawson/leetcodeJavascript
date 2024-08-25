@@ -5,49 +5,49 @@ class TreeNode {
     this.right = null;
   }
 }
+
+const bfs = (root) => {
+  let queue = [[root, 0, -0]];
+  let store = [];
+
+  while (queue.length > 0) {
+    let [value, level, parent] = queue.shift();
+
+    store.push([value.val, level, parent]);
+    parent = value.val;
+    if (value.left !== null) queue.push([value.left, level + 1, parent]);
+    if (value.right !== null) queue.push([value.right, level + 1, parent]);
+  }
+  return store;
+};
+
+const findLevels = (queue, x, y) => {
+  let holdX;
+  let holdY;
+  for (var i = 0; i < queue.length; i++) {
+    // console.log(queue[i][0]);
+    if (queue[i][0] === x) holdX = queue[i];
+    if (queue[i][0] === y) holdY = queue[i];
+  }
+  //  console.log(holdX);
+  // console.log(holdY);
+  return [holdX, holdY];
+};
+
 var isCousins = function (root, x, y) {
-  let checker = [[root, 0]];
-  let bucket = [];
+  let queue = bfs(root);
+  //console.log(queue);
+  let findLevelsVar = findLevels(queue, x, y);
+  console.log(findLevelsVar);
 
-  while (checker.length > 0) {
-    let [current, level] = checker.shift();
+  //confirm if the levels are the same:
+  if (findLevelsVar[0][1] !== findLevelsVar[1][1]) return false;
 
-    if (!bucket[level]) {
-      bucket.push([]);
-      bucket[level].push(current.val);
-    } else {
-      bucket[level].push(current.val);
-    }
+  console.log(findLevelsVar[0][2], findLevelsVar[1][2]);
 
-    if (current.left !== null) checker.push([current.left, level + 1]);
-    if (current.right !== null) checker.push([current.right, level + 1]);
-  }
-
-  for (var i = 0; i < bucket.length; i++) {
-    let findsBoth = bucketChecker(bucket[i], x, y);
-    if (findsBoth === true) {
-      return true;
-    }
-  }
-
-  return false;
+  //Check parents
+  // let findParentVar = findParent(q)
 };
-
-const bucketChecker = (bucket, x, y) => {
-  let foundX = false;
-  let foundY = false;
-
-  for (var i = 0; i < bucket.length; i++) {
-    console.log(bucket[i]);
-    if (bucket[i] == x) foundX = true;
-    if (bucket[i] == y) foundY = true;
-  }
-
-  if (foundX === true && foundY === true) return true;
-
-  return false;
-};
-
 let one = new TreeNode(1);
 let two = new TreeNode(2);
 let three = new TreeNode(3);
@@ -59,20 +59,17 @@ one.right = three;
 two.right = four;
 three.right = five;
 
-console.log(isCousins(one, 5, 4));
+isCousins(one, 5, 4);
 
 /*
-Create a array to store the arrays
-Create an array for the BFS [value, level]
+1) use BFS - queue
+Store them all in a queue tracking the level and value in an 2D array.
+2) Go through the array to find the 2 numbers and track them.
 
-BFS loop
-    
-if the level doesn't exist
-    push []
-    add value and level
-else
-    add value and level
+Two main checks
+1) if the levels arn't the same - return FALSE
+2) If the value assoicated wiht level - 1 is the same - return FALSE
+
+Return true/
 
 */
-
-//Maybe use a graph to connect the parents?
