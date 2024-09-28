@@ -25,28 +25,22 @@ const findLevels = (queue, x, y) => {
   let holdX;
   let holdY;
   for (var i = 0; i < queue.length; i++) {
-    // console.log(queue[i][0]);
     if (queue[i][0] === x) holdX = queue[i];
     if (queue[i][0] === y) holdY = queue[i];
   }
-  //  console.log(holdX);
-  // console.log(holdY);
+
   return [holdX, holdY];
 };
 
 var isCousins = function (root, x, y) {
   let queue = bfs(root);
-  //console.log(queue);
+  console.log(queue);
   let findLevelsVar = findLevels(queue, x, y);
-  console.log(findLevelsVar);
 
-  //confirm if the levels are the same:
   if (findLevelsVar[0][1] !== findLevelsVar[1][1]) return false;
+  if (findLevelsVar[0][2] === findLevelsVar[1][2]) return false;
 
-  console.log(findLevelsVar[0][2], findLevelsVar[1][2]);
-
-  //Check parents
-  // let findParentVar = findParent(q)
+  return true;
 };
 let one = new TreeNode(1);
 let two = new TreeNode(2);

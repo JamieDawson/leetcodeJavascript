@@ -18,35 +18,26 @@ let prices = [7, 1, 5, 3, 6, 4];
 
 maxProfit(prices);
 
+//Other way of writting it:
 /*
-let buyMinPrice = first item in array
-let max = 0
+var lengthOfLongestSubstring = function(s) {
+    let max = 0;
+    let mySet = new Set();
+    let left = 0;
 
-for loop starting at 1
-    sellprice var equal to i
-    profit variable = sellPrice - buyMinPirce
-    max = math.max (profit or max)
-    buyMinPrice compared math.min to either prices[i] or buyMinPrice
+    for(var right = 0; right < s.length; right++) {
+        while(mySet.has(s[right])) {
+            mySet.delete(s[left])
+            left++;
+        }
 
+        mySet.add(s[right]);
 
-return max
+        if(mySet.size > max) {
+            max = mySet.size;
+        }
+    }
+
+    return max;
+};
 */
-
-/*
-  let minBuyPrice = prices[0];
-  let max = 0;
-
-  for (var i = 1; i < prices.length; i++) {
-    const sellPrice = prices[i];
-    const profit = sellPrice - minBuyPrice;
-    max = Math.max(max, profit);
-    minBuyPrice = Math.min(minBuyPrice, prices[i]);
-    ///////////////////
-    // console.log("profit is: " + profit);
-    // console.log("max is: " + max);
-    // console.log("minBuyPrice is: " + minBuyPrice);
-    // console.log("**************");
-  }
-  return max;
-
-  */

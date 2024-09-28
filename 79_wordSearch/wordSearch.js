@@ -1,16 +1,3 @@
-const createFoundArray = (board, letter) => {
-  let arr = [];
-
-  for (var i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j] == letter) {
-        arr.push([i, j]);
-      }
-    }
-  }
-  return arr;
-};
-
 const bfs = (row, col, board, word, visited, index) => {
   const numRows = board.length;
   const numCols = board[0].length;
@@ -61,6 +48,7 @@ var exist = function (board, word) {
   const visited = Array.from({ length: numRows }, () =>
     Array(numCols).fill(false)
   );
+  console.log(visited);
 
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
