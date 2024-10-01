@@ -52,3 +52,8 @@ var numUniqueEmails = function (emails) {
 
   return Object.keys(emailsObject).length;
 };
+
+/*
+Time Complexity: O(m * n), where m is the number of emails and n is the average length of an email.
+Space Complexity: O(m * n), since we store unique emails in the myObject object, and each unique email string can be of size n.
+*/
