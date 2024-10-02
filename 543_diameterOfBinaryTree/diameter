@@ -1,0 +1,21 @@
+// DFS function to compute depth and update the diameter
+const dfs = (node) => {
+    if (!node) return 0; // Return 0 for null nodes (no depth)
+
+    const leftDepth = dfs(node.left);   // Recursively calculate left depth
+    const rightDepth = dfs(node.right); // Recursively calculate right depth
+
+    // Update the global diameter (which is the sum of left and right depths at this node)
+    globalDiameter = Math.max(globalDiameter, leftDepth + rightDepth);
+
+    // Return the height of the current node (max depth of left/right subtree + 1)
+    return Math.max(leftDepth, rightDepth) + 1;
+};
+
+var diameterOfBinaryTree = function(root) {
+    globalDiameter = 0;  // Initialize global diameter to track the longest path
+    
+    dfs(root);  // Call DFS to calculate depth and update the diameter
+
+    return globalDiameter;  // Return the final diameter
+};
