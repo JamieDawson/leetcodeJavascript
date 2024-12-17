@@ -3,28 +3,17 @@ var twoSum = function (numbers, target) {
   let right = numbers.length - 1;
 
   while (left < right) {
-    if (numbers[left] + numbers[right] === target) {
+    let sum = numbers[left] + numbers[right];
+    if (sum === target) {
       return [left + 1, right + 1];
-    } else if (numbers[left] + numbers[right] > target) {
-      right--;
-    } else {
+    }
+    if (sum < target) {
       left++;
+    } else {
+      right--;
     }
   }
-
-  /*
- while left is LESS THAN right
-     if numbers(left) + numbers(right) === target
-        return left and right in an array
-
-      if numbers(left) + right > target
-        move right down
-      else
-        move left up.
-
- */
 };
-
 let numbers = [2, 7, 11, 15];
 let target = 9;
 
