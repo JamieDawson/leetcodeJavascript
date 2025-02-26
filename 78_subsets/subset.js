@@ -21,7 +21,7 @@ var subsets = function (nums) {
   return res; // rerturn the final 2d arr
 };
 
-let nums = [1, 2, 3, 4];
+let nums = [1, 2, 3];
 let final = subsets(nums);
 console.log(final);
 
