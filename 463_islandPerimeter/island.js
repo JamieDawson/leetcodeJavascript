@@ -1,48 +1,80 @@
-var islandPerimeter = function (grid) {
-  let height = grid.length;
-  let width = grid[0].length;
-
-  let count = 0;
-
-  for (let row = 0; row < height; row++) {
-    for (let col = 0; col < width; col++) {
-      if (grid[row][col] == 1) {
-        count += 4;
-
-        if (row > 0 && grid[row - 1][col] == 1) count--; //checking up
-        if (row < height - 1 && grid[row + 1][col] == 1) count--; //checking down
-        if (grid[row][col - 1] == 1) count--; // checking left
-        if (grid[row][col + 1] == 1) count--; // checking right
+let findFirstIsland = (grid) => {
+  for (var i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      if (grid[i][j] === 1) {
+        return [[i, j]];
       }
     }
   }
-  return count;
 };
 
-let grid = [
-  [0, 1, 0, 0],
-  [1, 1, 1, 0],
-  [0, 1, 0, 0],
-  [1, 1, 0, 0],
-];
+function islandPerimeter(grid: number[][]): number {
+  let counter = 0;
+  let visited = [];
+  let rows = grid.length;
+  let cols = grid[0].length;
+  let directions = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
 
-islandPerimeter(grid);
+  for (let i = 0; i < rows; i++) {
+    visited.push([]);
+  }
+  console.log(visited);
+
+  for (var i = 0; i < rows; i++) {
+    for (var j = 0; j < cols; j++) {
+      visited[i][j] = false;
+    }
+  }
+
+  let queue = findFirstIsland(grid);
+  let [startRow, startCol] = queue[0];
+  visited[startRow][startCol] = true;
+
+  while (queue.length > 0) {
+    const [r, c] = queue.shift();
+    for (let [dr, dc] of directions) {
+      let newRow = r + dr;
+      let newCol = c + dc;
+
+      if (
+        newRow < 0 ||
+        newRow >= rows ||
+        newCol < 0 ||
+        newCol >= cols ||
+        grid[newRow][newCol] === 0
+      ) {
+        counter++;
+      } else if (
+        grid[newRow][newCol] === 1 &&
+        visited[newRow][newCol] === false
+      ) {
+        queue.push([newRow, newCol]);
+        visited[newRow][newCol] = true;
+      }
+    }
+  }
+
+  console.log(counter);
+  return counter;
+}
 
 /*
-counter = 0; // counts  the walls.
+BFS
+1 = land
+0 = water
 
-loop through all 4 layers   
-    2nd loop for numbers in selected array layer to find the 1's in the layer.
-        if 1
-            check left, if 0    
-                counter++
-            check above, if 0   
-                counter++
-            check right, if 0
-                counter++
-            check below, if 0
-                counter++
+Counter variable set to 0. Count the edges.
+Create a visited array of arrays, set all spots to false
+Create directiosn array to loop through
+Go through array of arrays to find the first instance of 1, store it in the queue.
+Once you got the first spot in the queue, use BFS on it!
 
-return counter
+Checkers to increase counter IF current grid value is 1:
+row < 0 OR row > grid lenght OR col < 0 OR col > grid[0] lenght
 
 */
