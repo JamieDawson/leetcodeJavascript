@@ -43,3 +43,25 @@ function productExceptSelf(nums) {
 
   return result;
 }
+
+function productExceptSelf(nums: number[]): number[] {
+  let ans: number[] = Array(nums.length).fill(1);
+  let left: number = 1;
+  let right: number = 1;
+
+  // First pass: prefix product
+  for (let i = 0; i < nums.length; i++) {
+    ans[i] = left;
+    left *= nums[i];
+  }
+  console.log("After prefix:", ans);
+
+  // Second pass: suffix product
+  for (let j = nums.length - 1; j >= 0; j--) {
+    ans[j] *= right;
+    right *= nums[j];
+  }
+  console.log("After suffix:", ans);
+
+  return ans;
+}
