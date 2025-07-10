@@ -1,27 +1,27 @@
+var longestCommonPrefix = function (strs) {
+  let res = "";
 
-var longestCommonPrefix = function(strs) {
-    let str = []
-
-    for(let i = 0; i < strs[0].length; i++) {
-        for(let s of strs) {
-            if(i === s.length || s[i] !== strs[0][i]){
-                return str.join("");
-            } 
-        }
-        str.push(strs[0][i])
+  for (let i = 0; i < strs[0].length; i++) {
+    for (let val of strs) {
+      if (i === val.length || val[i] !== strs[0][i]) {
+        return res;
+      }
     }
+    res += strs[0][i];
+  }
+
+  return res;
 };
 
-
 /*
-create str = ""
-Grab first array
-    start grabbing every array in strs one at a time and compare the ith space
-        if not matching, end this loop by returning str as is
-    
-    push ith space to store in str.
+Algorithm: 
+Create an empty string.
+Loop for the size of the first item in the array.
+Grab every time in teh array and compare ith value
+	Check if i is equal to current value length OR if the values don’t match
 
-Improve on:
-Getting better at grabbing items in an array.
+
+TIME: O(n * m) 
+SPACE: O(n)
 
 */

@@ -1,32 +1,43 @@
-var threeSum = function (nums) {
-  nums.sort((a, b) => a - b);
-  const res = [];
+function threeSum(nums: number[]): number[][] {
+  let ans: number[][] = [];
+  nums = nums.sort((a, b) => a - b);
+  console.log(nums);
 
-  for (var i = 0; i < nums.length; i++) {
-    const a = nums[i];
-    if (a > 0) break;
-    if (i > 0 && a === nums[i - 1]) continue;
-    let l = i + 1;
-    let r = nums.length - 1;
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-    while (l < r) {
-      sum = a + nums[l] + nums[r];
-      if (sum < 0) {
-        l++;
-      } else if (sum > 0) {
-        r--;
+    let left: number = i + 1;
+    let right: number = nums.length - 1;
+
+    while (left < right) {
+      let sum = nums[i] + nums[left] + nums[right];
+
+      if (sum === 0) {
+        ans.push([nums[i], nums[left], nums[right]]);
+
+        while (left < right && nums[left] === nums[left + 1]) left++;
+
+        while (left < right && nums[right] === nums[right - 1]) right--;
+
+        left++;
+        right--;
+      } else if (sum < 0) {
+        left++;
       } else {
-        res.push([a, nums[l], nums[r]]);
-        l++;
-        r--;
-        while (nums[l] === nums[l - 1] && l < r) {
-          l++;
-        }
+        right--;
       }
     }
   }
-  return res;
-};
+  console.log(ans);
+  return ans;
+}
+
+/*
+1. Sort array
+2. Iterate through array
+3. Skip duplicates using continue
+4. use 2 pointer method
+*/
 
 let nums = [-1, 0, 1, 2, -1, -4];
 
