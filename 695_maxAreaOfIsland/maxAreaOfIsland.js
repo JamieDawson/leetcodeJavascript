@@ -39,3 +39,47 @@ grid = [
 ];
 
 maxAreaOfIsland(grid);
+
+/*
+const bfs = (row, col, grid, seen) => {
+    let queue = [[row, col]];
+    let directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+    let track = 1;
+    seen.add(`${row},${col}`)
+
+    while (queue.length) {
+        let [qr, qc] = queue.shift();
+
+        for (let [dr, dc] of directions) {
+            let newRow = qr + dr
+            let newCol = qc + dc;
+
+            if (newRow >= 0 && newCol >= 0 && newRow < grid.length && newCol < grid[0].length && grid[newRow][newCol] === 1 && !seen.has(`${newRow},${newCol}`)) {
+                track++;
+                queue.push([newRow, newCol]);
+                seen.add(`${newRow},${newCol}`)
+            }
+        }
+    }
+    return track;
+}
+
+function maxAreaOfIsland(grid: number[][]): number {
+    let max = 0
+    let count = 0
+    let seen = new Set();
+
+    for (let row = 0; row < grid.length; row++) {
+        for (let col = 0; col < grid[0].length; col++) {
+            if (grid[row][col] === 1) {
+                count = bfs(row, col, grid, seen);
+                max = Math.max(max, count);
+            }
+        }
+    }
+
+    return max;
+};
+
+
+*/
