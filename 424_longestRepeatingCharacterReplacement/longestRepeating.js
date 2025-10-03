@@ -1,45 +1,27 @@
-var addToMap = (key, myMap) => {
-  if (!myMap.has(key)) {
-    myMap.set(key, 1);
-  } else {
-    let value = myMap.get(key);
-    myMap.set(key, value + 1);
-  }
-};
-
-var characterReplacement = function (s, k) {
-  let myMap = new Map();
-  let highestFrequency = 0; //most frequent letter
-  let longest = 0; //longest valid window
+function characterReplacement(s: string, k: number): number {
   let left = 0;
-  let right = 0;
+  let maxLetterFound = 0;
+  let myHash = {};
+  let maxLen = 0;
 
-  while (right < s.length) {
-    let currentCharacter = s[right];
-    addToMap(currentCharacter, myMap);
+  for (let right = 0; right < s.length; right++) {
+    if (!myHash[s[right]]) {
+      myHash[s[right]] = 1;
+    } else {
+      myHash[s[right]]++;
+    }
 
-    highestFrequency = Math.max(highestFrequency, myMap.get(currentCharacter));
+    if (myHash[s[right]] > maxLetterFound) {
+      maxLetterFound = myHash[s[right]];
+    }
 
-    while (right - left + 1 - highestFrequency > k) {
-      const leftCharacter = s.charAt(left);
-      let leftValue = myMap.get(leftCharacter);
-      myMap.set(leftCharacter, leftValue - 1);
+    while (right - left + 1 - maxLetterFound > k) {
+      myHash[s[left]]--;
       left++;
     }
 
-    longest = Math.max(longest, right - left + 1);
-    right++;
+    maxLen = Math.max(maxLen, right - left + 1);
   }
 
-  return longest;
-};
-
-let s = "ABAB";
-let k = 2;
-
-characterReplacement(s, k);
-
-/*
-Add values to a hashmap.
-
-*/
+  return maxLen;
+}
