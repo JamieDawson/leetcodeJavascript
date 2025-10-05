@@ -1,19 +1,48 @@
-var searchMatrix = function (matrix, target) {
-  let m = matrix.length;
-  let n = matrix[0].length;
-  let left = 0,
-    right = m * n - 1;
+const binarySearch = (arr: number[], target: number): boolean => {
+  let left = 0;
+  let right = arr.length - 1;
+  let middle = 0;
 
   while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
-    let mid_val = matrix[Math.floor(mid / n)][mid % n];
+    middle = Math.floor((right + left) / 2);
 
-    if (mid_val === target) return true;
-    else if (mid_val < target) left = mid + 1;
-    else right = mid - 1;
+    if (arr[middle] === target) {
+      return true;
+    } else if (arr[middle] > target) {
+      right = middle - 1;
+    } else {
+      left = middle + 1;
+    }
   }
   return false;
 };
+
+function searchMatrix(matrix: number[][], target: number): boolean {
+  let arrLeft = 0;
+  let arrRight = matrix.length - 1;
+  let middle;
+
+  while (arrLeft <= arrRight) {
+    middle = Math.floor((arrRight + arrLeft) / 2);
+    //console.log("middle: ", middle,matrix[middle][0],  matrix[middle][matrix[middle].length - 1])
+
+    if (
+      target >= matrix[middle][0] &&
+      target <= matrix[middle][matrix[middle].length - 1]
+    ) {
+      // console.log("FOUND")
+      console.log(matrix[middle]);
+      return binarySearch(matrix[middle], target);
+      //return true;
+    } else if (matrix[middle][0] > target) {
+      arrRight = middle - 1;
+    } else {
+      arrLeft = middle + 1;
+    }
+  }
+
+  return false;
+}
 
 var matrix = [
   [1, 3, 5, 7],
