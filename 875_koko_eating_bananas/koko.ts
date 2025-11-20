@@ -1,11 +1,3 @@
-const findLargest = (piles: number[]) => {
-  let large = -1;
-  for (let i = 0; i < piles.length; i++) {
-    if (piles[i] > large) large = piles[i];
-  }
-  return large;
-};
-
 const findTotal = (piles: number[], middle: number): number => {
   let total = 0;
 
@@ -17,13 +9,13 @@ const findTotal = (piles: number[], middle: number): number => {
 
 function minEatingSpeed(piles: number[], h: number): number {
   let left = 1;
-  let right = findLargest(piles);
+  let right = Math.max(...piles);
   let k;
 
   while (left <= right) {
     let middle = Math.floor((right + left) / 2);
 
-    k = findTotal(piles, middle);
+    k = findTotal(piles, middle); //How many hours it takes to eat bananas in total
     if (k <= h) {
       right = middle - 1;
     } else {
