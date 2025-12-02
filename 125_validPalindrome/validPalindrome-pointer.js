@@ -1,52 +1,22 @@
-// const validPalindrome = (str) => {
-//   let palString = str.replace(/[^\w]/gi, "").toLowerCase();
-//   let left = 0;
-//   let right = palString.length - 1;
-//   console.log(palString);
+function isPalindrome(s: string): boolean {
+  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+  let l = 0;
+  let r = s.length - 1;
 
-//   while (left < right) {
-//     if (palString[left] !== palString[right]) {
-//       console.log(palString[left]);
-//       console.log(palString[right]);
-//       console.log("FALSE");
-//       return false;
-//     }
-//     left++;
-//     right--;
-//   }
-//   console.log("true");
-//   return true;
-// };
+  while (l <= r) {
+    if (s[l] !== s[r]) {
+      return false;
+    }
+    l++;
+    r--;
+  }
 
-var isPalindrome = function (s) {};
+  return true;
+}
 
-let str = "aa--aa";
-isPalindrome(str);
+/*
+Update string by lowercasing & removing spaces
 
-//
-//TIME: O(n + n) --> O(n) - Two different loops.
-//SPACE: O(n) - create array for letters
+use 2 pointers to check left & right.
 
-// var isPalindrome = function(s) {
-//   s = s.toLowerCase();
-//   let justLetters = []; //O(n)
-
-//   for(var i = 0; i < s.length; i++) {  //O(n)
-//       if(s[i] >= 'a' && s[i] <= 'z') {
-//           justLetters.push(s[i]) //O(1)
-//       }
-//   }
-
-//   let left = 0;
-//   let right = justLetters.length - 1;
-
-//   while(left <= right) { //O(n)
-//       if(justLetters[left] !== justLetters[right]) {
-//           return false;
-//       }
-//       left++;
-//       right--;
-//   }
-
-//   return true;
-// };
+*/
