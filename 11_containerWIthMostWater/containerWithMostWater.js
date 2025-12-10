@@ -25,19 +25,28 @@ To find the area of a square, use (r - l) * the smallest of l or r.
 
 */
 
-var maxArea = function (height) {
-  let res = 0;
-  let l = 0;
-  let r = height.length - 1;
+function maxArea(height: number[]): number {
+  let container = 0;
+  let left = 0;
+  let right = height.length - 1;
 
-  while (l < r) {
-    let totalWater = (r - l) * Math.min(height[l], height[r]);
-    res = Math.max(res, totalWater);
-    if (height[l] < height[r]) {
-      l++;
+  while (left < right) {
+    let smallest = Math.min(height[left], height[right]);
+
+    container = Math.max(container, smallest * (right - left));
+
+    if (height[left] <= height[right]) {
+      left++;
     } else {
-      r--;
+      right--;
     }
   }
-  return res;
-};
+
+  return container;
+}
+
+/*
+2 poitner method but using math of right - left.
+
+
+*/
