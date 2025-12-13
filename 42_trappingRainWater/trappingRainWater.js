@@ -1,14 +1,25 @@
-const trap = (height) => {
-  let leftMax = [];
-  let rightMax = [];
+function trap(height: number[]): number {
+  let left = 0;
+  let right = height.length - 1;
+  let res = 0;
+  let maxLeft = height[0];
+  let maxRight = height[height.length - 1];
 
-  //fill up leftMax.
-  for (var i = 0; i < height.length; i++) {
-    let num = Math.max(height[(i - 1, i)]);
-    leftMax.push(num);
+  while (left < right) {
+    if (maxLeft < maxRight) {
+      left++;
+      maxLeft = Math.max(maxLeft, height[left]);
+      res += maxLeft - height[left];
+    } else {
+      right--;
+      maxRight = Math.max(maxRight, height[right]);
+      res += maxRight - height[right];
+    }
   }
-  console.log(leftMax);
-};
+  return res;
+}
 
-let height = [4, 2, 0, 3, 2, 5];
-trap(height);
+/*
+Two pointer method.
+tracking MaxLeft and MaxRight instead of just left and right pointers.
+*/
