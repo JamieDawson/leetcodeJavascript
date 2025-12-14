@@ -8,7 +8,7 @@ var isValid = function (s) {
 
   for (let char of s) {
     if (char in pairs) {
-      // console.log("char is: " + char);
+      console.log("char is: " + char);
       stack.push(char);
     } else {
       if (stack.length === 0) return false;
