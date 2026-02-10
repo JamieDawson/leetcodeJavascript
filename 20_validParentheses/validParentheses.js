@@ -1,27 +1,27 @@
 var isValid = function (s) {
-  const stack = [];
-  const pairs = {
+  let symbols = {
     "(": ")",
     "[": "]",
     "{": "}",
   };
+  let stack = [];
 
-  for (let char of s) {
-    if (char in pairs) {
-      console.log("char is: " + char);
-      stack.push(char);
+  for (let i = 0; i < s.length; i++) {
+    let current = s[i];
+
+    if (symbols[current]) {
+      stack.push(current);
     } else {
-      if (stack.length === 0) return false;
-      const last = stack.pop();
-      //console.log(last);
-      if (pairs[last] !== char) return false;
+      let pulled = stack.pop();
+      if (symbols[pulled] !== current) {
+        return false;
+      }
     }
   }
-  if (stack.length) {
-    return false;
-  } else {
-    return true;
-  }
+
+  if (stack.length !== 0) return false;
+
+  return true;
 };
 
 let s = "([{}])";
