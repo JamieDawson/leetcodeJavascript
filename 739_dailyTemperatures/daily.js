@@ -1,18 +1,19 @@
-var dailyTemperatures = function (temperatures) {
-  let newArr = new Array(temperatures.length).fill(0);
+function dailyTemperatures(temperatures: number[]): number[] {
+    let ans = new Array(temperatures.length).fill(0);
+    let stack = [];
 
-  for (var i = 0; i < temperatures.length; i++) {
-    let counter = 1;
-    for (j = i + 1; j < temperatures.length; j++) {
-      if (temperatures[i] < temperatures[j]) {
-        newArr[i] = counter;
-        break;
-      }
-      counter++;
+    for (let i = 0; i < temperatures.length; i++) {
+        let curr = temperatures[i];
+
+        while (stack.length > 0 && curr > temperatures[stack[stack.length - 1]]) {
+            let s = stack.pop();
+            ans[s] = i - s
+        }
+
+        stack.push(i)
     }
-  }
 
-  return newArr;
+    return ans;
 };
 
 let temperatures = [73, 74, 75, 71, 69, 72, 76, 73];
