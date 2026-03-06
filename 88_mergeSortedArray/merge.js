@@ -1,48 +1,26 @@
-var merge = function (nums1, m, nums2, n) {
-  const hash = {};
-  let fill = 0;
+function merge(nums1, m, nums2, n) {
+  let i = m - 1;
+  let j = n - 1;
+  let k = m + n - 1;
 
-  //add positive numbers from nums1 to hash
-  for (let char of nums1) {
-    if (char !== 0) {
-      if (hash[char]) hash[char]++;
-      else hash[char] = 1;
-      fill++;
+  while (i >= 0 && j >= 0) {
+    if (nums1[i] > nums2[j]) {
+      nums1[k] = nums1[i];
+      i--;
+    } else {
+      nums1[k] = nums2[j];
+      j--;
     }
+
+    k--;
   }
 
-  //add positive numbers from nums2 to hash
-  for (let char of nums2) {
-    if (char !== 0) {
-      if (hash[char]) hash[char]++;
-      else hash[char] = 1;
-      fill++;
-    }
+  while (j >= 0) {
+    nums1[k] = nums2[j];
+    j--;
+    k--;
   }
-  console.log(fill);
-
-  if (fill < m + n) {
-    hash[0] = m + n - fill;
-
-    fill++;
-  }
-
-  //empty nums1.
-  for (var i = 0; i < m + n; i++) {
-    nums1.pop();
-  }
-
-  for (const key in hash) {
-    let i = 0;
-    while (i < hash[key]) {
-      nums1.push(key);
-      i++;
-    }
-  }
-  console.log(nums1.sort());
-  return nums1;
-};
-
+}
 let nums1 = [-1, 0, 0, 3, 3, 3, 0, 0, 0];
 let m = 6;
 let nums2 = [1, 2, 2];
