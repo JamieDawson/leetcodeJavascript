@@ -1,45 +1,39 @@
-class ListNode {
-  constructor(val = null, next = null) {
-    this.val = val;
-    this.next = next;
-  }
-}
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
 
-var mergeTwoLists = function (l1, l2) {};
+function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
+    let current = new ListNode(-1);
+    let temp = current;
+
+    while (list1 && list2) {
+        if (list1.val < list2.val) {
+            current.next = list1;
+            list1 = list1.next;
+            current = current.next;
+        } else {
+            current.next = list2;
+            list2 = list2.next;
+            current = current.next;
+        }
+    }
+
+    if (list1) current.next = list1;
+    if (list2) current.next = list2;
+
+    return temp.next;
+};
 
 /*
-let current1 = l1
-let current2 = l2
-
-while current1 isn't null AND current2 isn't null
-	if current1 va is smaller than current 2
+Time: O(n + m)
+Space: O(1)
 
 */
-
-/*
-OLD CODE:
-*/
-
-/*
-	let dummy = new ListNode(-1);
-	let head = dummy;
-
-	while (l1 != null && l2 != null) {
-		if (l1.val <= l2.val) {
-			dummy.next = l1;
-			l1 = l1.next;
-		} else {
-			dummy.next = l2;
-			l2 = l2.next;
-		}
-		dummy = dummy.next;
-	}
-
-	if (l1 != null) {
-		dummy.next = l1;
-	} else {
-		dummy.next = l2;
-	}
-
-	return head.next;
-	*/
