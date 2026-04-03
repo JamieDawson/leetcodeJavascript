@@ -5,53 +5,68 @@ class Node {
   }
 }
 
-var reorderList = function (head) {
-  let mid = findMiddle(head);
-  let reversedFromMiddle = reverseList(mid);
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
 
-  reorder(head, reversedFromMiddle);
+/**
+ Do not return anything, modify head in-place instead.
+ */
+function reorderList(head: ListNode | null): void {
+    let slow = head;
+    let fast = head;
+
+    while(fast.next && fast.next.next){
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    let second = slow.next;
+    slow.next = null;
+
+    let prev = null;
+
+    while(second) {
+        let nextNode = second.next;
+        second.next = prev;
+        prev = second;
+        second = nextNode
+    }
+
+    second = prev;
+    let first = head;
+    let final = head;
+
+    while(second){
+        let one = first.next;
+        let two = second.next;
+
+        first.next = second;
+        second.next = one;
+
+        first = one;
+        second = two
+    }
+
 };
 
-var findMiddle = (head) => {
-  let slow = head;
-  let fast = head;
+/*
+slow/fast pointer
 
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
-  }
+reverse middle list
 
-  return slow;
-};
+reorder.
 
-var reverseList = (head) => {
-  let prev = null;
 
-  while (head) {
-    let nextNode = head.next;
-    head.next = prev;
-    prev = head;
-    head = nextNode;
-  }
-  return prev;
-};
-
-var reorder = (l1, l2) => {
-  let next = null;
-  let first = l1;
-  let second = l2;
-
-  while (second.next) {
-    next = first.next;
-    first.next = second;
-    first = next;
-
-    next = second.next;
-    second.next = first;
-    second = next;
-  }
-};
-
+*/
 let one = new Node(1);
 let two = new Node(2);
 let three = new Node(3);
