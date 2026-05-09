@@ -1,19 +1,47 @@
 //Iterative solution:
 
-var invertTree = function (root) {
-  let stack = [root];
-  while (stack.length > 0) {
-    let current = stack.pop();
-    if (current !== null) {
-      stack.push(current.left);
-      stack.push(current.right);
-      let temp = current.left;
-      current.left = current.right;
-      current.right = temp;
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function invertTree(root: TreeNode | null): TreeNode | null {
+    if(!root) return null;
+    let hold = root;
+
+    let queue = [root];
+
+    while(root) {
+        let current = queue.shift();
+
+        //Swap
+        let temp = current.left;
+        current.left = current.right;
+        current.right = temp;
+
+        if(current.left !== undefined) queue.push(current.left);
+        if(current.right !== undefined) queue.push(current.right);
     }
-  }
-  return root;
+
+    return hold;
 };
+
+/*
+Stack: 4
+Stack: 2,7
+Stack: 2, 6,9
+
+
+*/
 
 /*
 Time: O(n) - going through entire Linked List
