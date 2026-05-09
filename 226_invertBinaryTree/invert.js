@@ -15,24 +15,22 @@
  */
 
 function invertTree(root: TreeNode | null): TreeNode | null {
-    if(!root) return null;
-    let hold = root;
+     if(!root) return null;
 
     let queue = [root];
 
-    while(queue.length) {
+    while(queue.length > 0) {
         let current = queue.shift();
 
-        //Swap values
         let temp = current.left;
         current.left = current.right;
         current.right = temp;
 
         if(current.left) queue.push(current.left);
-        if(current.right) queue.push(current.right);
+        if(current.right) queue.push(current.right)
     }
-
-    return hold;
+    
+    return root;
 };
 
 /*
