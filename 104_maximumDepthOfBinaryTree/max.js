@@ -4,23 +4,22 @@ function TreeNode(val) {
   this.left = null;
 }
 
-var maxDepth = function (root) {
-  if (!root) return 0;
+function maxDepth(root: TreeNode | null): number {
+    if(!root) return 0;
 
-  const nodesToCheck = [[root, 1]];
-  let maxDepth = 0;
+    let queue = [[root, 1]];
+    let maxDepth = 0
 
-  while (nodesToCheck.length) {
-    const [currentNode, level] = nodesToCheck.pop();
-    console.log(currentNode, level);
+    while(queue.length){
+        let [current, depth] = queue.pop() as [TreeNode, number];
 
-    if (currentNode.right) nodesToCheck.push([currentNode.right, level + 1]);
-    if (currentNode.left) nodesToCheck.push([currentNode.left, level + 1]);
+        if(current.left) queue.push([current.left, depth + 1]);
+        if(current.right) queue.push([current.right, depth + 1])
 
-    maxDepth = Math.max(maxDepth, level);
-  }
+        maxDepth = Math.max(maxDepth, depth);
+    }
 
-  return maxDepth;
+    return maxDepth
 };
 
 let node3 = new TreeNode(3);
