@@ -6,16 +6,17 @@ class TreeNode {
   }
 }
 
-var isSameTree = function (p, q) {
-  if (!p && !q) {
-    return true;
-  }
-  if (!p || !q || p.val !== q.val) {
-    return false;
-  }
-  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
-};
+function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
+    if(p === null && q === null) {
+        return true;
+    }
 
+    if(p && q && p.val === q.val) {
+        return (isSameTree(p.left, q.left) && isSameTree(p.right, q.right))
+    } else {
+        return false
+    }
+};
 const pOne = new TreeNode(1);
 const pTwo = new TreeNode(2);
 const pThree = new TreeNode(3);
