@@ -1,20 +1,14 @@
-var lowestCommonAncestor = function (root, p, q) {
-  while (root) {
-    let isGreater = root.val < p.val && root.val < q.val;
 
-    if (isGreater) {
-      root = root.right;
-      continue;
+function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): TreeNode | null {
+    let curr = root;
+
+    while (curr) {
+        if (p.val > curr.val && q.val > curr.val) {
+            curr = curr.right
+        } else if (p.val < curr.val && q.val < curr.val) {
+            curr = curr.left;
+        } else {
+            return curr;
+        }
     }
-
-    let isLess = p.val < root.val && q.val < root.val;
-
-    if (isLess) {
-      root = root.left;
-      continue;
-    }
-
-    break;
-  }
-  return root;
 };
