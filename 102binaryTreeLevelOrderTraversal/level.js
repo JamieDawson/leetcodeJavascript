@@ -4,25 +4,28 @@ function NodeTree(val) {
   this.right = null;
 }
 
-var levelOrder = function (root) {
-  if (!root) return [];
-  let queue = [root];
-  let levels = [];
+function levelOrder(root: TreeNode | null): number[][] {
+    if (!root) return [];
 
-  while (queue.length > 0) {
-    let queueLength = queue.length;
-    let currentLevel = [];
+    let queue = [[root, 0]];
+    let final = []
 
-    for (let i = 0; i < queueLength; i++) {
-      let current = queue.shift();
+    while(queue.length > 0){
+        let [current, num] = queue.shift() as [TreeNode, number];
 
-      if (current.left) queue.push(current.left);
-      if (current.right) queue.push(current.right);
-      currentLevel.push(current.val);
+        if(!final[num]){
+            final.push([]);
+            final[num].push(current.val)
+        } else {
+            final[num].push(current.val)
+        }
+
+        if(current.left) queue.push([current.left, num + 1]);
+        if(current.right) queue.push([current.right, num + 1]);
+
     }
-    levels.push(currentLevel);
-  }
-  return levels;
+
+    return final
 };
 
 let node1 = new NodeTree(3);
@@ -37,3 +40,6 @@ node3.left = node4;
 node3.right = node5;
 let end = levelOrder(node1);
 console.log(end);
+
+
+
