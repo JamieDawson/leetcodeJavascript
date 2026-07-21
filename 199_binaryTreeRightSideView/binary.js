@@ -54,3 +54,39 @@ const findLastValueInArray = (arr) => {
 
   return arr[end];
 };
+
+
+
+/*
+Cleaner take on this question
+*/
+
+function rightSideView(root: TreeNode | null): number[] {
+    if (!root) return [];
+
+    let queue = [[root, 0]]
+    let final = []
+
+    while (queue.length > 0) {
+        let [current, num] = queue.shift() as [TreeNode, number];
+
+        if (!final[num]) {
+            final.push([]);
+            final[num].push([current.val])
+        } else {
+            final[num].push([current.val])
+        }
+
+        if (current.left) queue.push([current.left, num + 1]);
+        if (current.right) queue.push([current.right, num + 1])
+    }
+
+    for (let i = 0; i < final.length; i++) {
+        let end = final[i][final[i].length - 1]
+        final[i] = Number(end)
+    }
+
+    return final
+};
+
+
