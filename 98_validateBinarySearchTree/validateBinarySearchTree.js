@@ -1,42 +1,33 @@
-class TreeNode {
-  constructor(val) {
-    this.val = val;
-    this.left = null;
-    this.right = null;
-  }
-}
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
 
-var isValidBST = function (root) {
-  return validate(root, -Infinity, Infinity);
-};
+function isValidBST(root: TreeNode | null): boolean {
+    let queue = [[root, -Infinity, Infinity]];
 
-var validate = function (node, lower, upper) {
-  if (node == null) {
-    // empty node or empty tree
+    while (queue.length > 0) {
+        const [curr, left, right] = queue.shift() as [TreeNode, number, number]
+
+        if (!(left < curr.val && curr.val < right)) return false;
+
+        if (curr.left) {
+            queue.push([curr.left, left, curr.val])
+        }
+
+        if (curr.right) {
+            queue.push([curr.right, curr.val, right])
+        }
+    }
+
     return true;
-  }
-
-  if (lower < node.val && node.val < upper) {
-    // check if all tree nodes follow BST rule
-    return (
-      validate(node.left, lower, node.val) &&
-      validate(node.right, node.val, upper)
-    );
-  } else {
-    // early reject when we find violation
-    return false;
-  }
 };
-
-let five = new TreeNode(5);
-let three = new TreeNode(3);
-let seven = new TreeNode(7);
-let four = new TreeNode(4);
-let eight = new TreeNode(8);
-
-five.left = three;
-five.right = seven;
-seven.left = four;
-seven.right = eight;
-
-isValidBST(five);
