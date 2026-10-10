@@ -1,19 +1,32 @@
 function kClosest(points: number[][], k: number): number[][] {
-    let spots = []
+    const maxHeap = new PriorityQueue((a, b) => b[0] - a[0]);
+    let res = []
 
-    for (let [x, y] of points) {
-        let total = x * x + y * y;
-        spots.push([total, [x, y]])
+    for (const [x, y] of points) {
+        let dist = x * x + y * y;
+        maxHeap.push([dist, x, y]);
+        console.log(dist)
+        if (maxHeap.size() > k) {
+            maxHeap.pop();
+        }
     }
-    
-    spots.sort((a, b) => a[0] - b[0])
 
-
-    return spots.slice(0, k).map(p => p[1])
+    while (maxHeap.size() > 0) {
+        let temp = maxHeap.pop();
+        res.push([temp[1], temp[2]])
+    }
+    return res;
 };
 
 /*
-Time: O(n log n)
-Space: O(n)
-
+For your K Closest Points solution:
+Time complexity: \(O(n \log k)\)
+- You loop through all \(n\) points.
+- Adding each point to a heap of size at most \(k\) takes \(O(\log k)\).
+- Removing extra points also takes \(O(\log k)\).
+- You pop the remaining \(k\) points to build the result.
+Space complexity: \(O(k)\)
+The heap stores at most \(k\) points, and the result array stores \(k\) points.
+Interview answer: Time is \(O(n \log k)\), and space is \(O(k)\), where \(n\) is the number of points and \(k\) is how many closest points you need.
+Note: If \(k = n\), the time complexity becomes \(O(n \log n)\).
 */
